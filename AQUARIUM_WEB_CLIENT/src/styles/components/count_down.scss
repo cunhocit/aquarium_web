@@ -1,0 +1,19 @@
+@use '../abstracts/mixins' as *;
+
+.count-down-style {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: rgb(255, 255, 255);
+    border-radius: 0.3rem;
+    height: 100%;
+    background-color: rgb(0, 136, 77);
+    padding: 0 0.5rem;
+    margin-left: 1rem;
+
+    @include respond(tablet) {
+        font-size: 2rem;
+    }
+    @include respond(phone) {
+        font-size: 1.5rem;
+    }
+}

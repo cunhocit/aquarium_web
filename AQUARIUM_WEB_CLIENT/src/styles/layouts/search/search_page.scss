@@ -1,0 +1,142 @@
+@use '../../abstracts/mixins' as * ;
+
+.wrap-search-page {
+    width: 100dvw;
+    height: 100dvh;
+    scroll-snap-type: y mandatory;
+    overflow-y: scroll;
+    background-color: rgb(230, 230, 230);
+}
+
+.wrap-header-search-product {
+    width: 100dvw;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.title-search-for-word {
+    width: 80dvw;
+    display: flex;
+    justify-content: left;
+    flex-direction: row;
+    align-items: center;
+    padding: 0.5rem;
+}
+
+.title-search-for-word svg {
+    font-size: 1rem;
+}
+
+.title-search-for-word p {
+    text-align: left;
+    padding: 0.5rem;
+}
+
+.wrap-search-for-option {
+    background-color: rgb(255, 255, 255);
+    width: 80dvw;
+    padding: 1rem;
+    border-radius: 5px;
+
+    @include flex-space-between-row;
+    align-items: center;
+}
+
+.wrap-option-left-search-for-option {
+    @include flex-center-row;
+    align-items: center;
+    gap: 1rem;
+}
+
+.select-option-price {
+    @include flex-center-row;
+    align-items: center;
+    gap: 0.2rem;
+}
+
+.option-search-box {
+    padding: 0.5rem 1rem;
+    background-color: rgb(237, 237, 237);
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.option-search-box p {
+    color: rgb(0, 0, 0);
+}
+
+.select-option-price {
+    background-color: rgb(237, 237, 237);
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.select-option-price option {
+    border: 1px solid red;
+    outline: none;
+    background-color: transparent;
+}
+
+.wrap-option-right-search-for-option {
+    @include flex-center-row;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.pageCount {
+    width: 2rem;
+    height: 2rem;
+    @include flex-center-row;
+    align-items: center;
+}
+
+.prevPage, .nextPage {
+    width: 2rem;
+    height: 2rem;
+    @include flex-center-row;
+    align-items: center;
+    cursor: pointer;
+    border-radius: 5px;
+    border: 1px solid rgb(190, 190, 190);
+}
+
+.wrap-show-product {
+    @include flex-center-row;
+    margin-bottom: 2rem;
+    padding: 0.5rem;
+}
+
+.wrap-filter-box {
+    width: 15dvw;
+    background-color: white;
+}
+
+.wrap-list-product-p {
+    width: 65dvw;
+    @include flex-center-colmun;
+    align-items: center;
+}
+
+.header-search-bar {
+    width: 80dvw;
+    @include flex-center-row;
+    align-items: center;
+    padding: 0.5rem;
+    border-radius: 5px;
+    background-color: white;
+    margin-top: 1rem;
+    gap: 1rem;
+}
+
+.header-search-bar input {
+    outline: none;
+    border: none;
+    background-color: whitesmoke;
+    padding: 0.5rem;
+    border-radius: 5px;
+    width: 50%;
+}

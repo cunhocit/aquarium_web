@@ -1,0 +1,9 @@
+@use '../../abstracts/mixins/flex' as *;
+
+.wrap-dashboard {
+    width: 95%;
+}
+
+.dashboard-title {
+    color: rgb(54, 54, 54);
+}

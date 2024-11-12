@@ -1,0 +1,13 @@
+// base
+@use './base/base';
+
+// components
+@use './components/header.scss';
+@use './components/sidebar.scss';
+
+// layouts
+@use './layouts/home/main_layout.scss';
+@use './layouts/dashboard/dashboard.scss';
+
+// font
+@use './vendor/vendor';

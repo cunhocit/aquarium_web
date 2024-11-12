@@ -1,0 +1,98 @@
+@use '../abstracts/mixins' as *;
+
+.wrap-form-register {
+    z-index: 1000;
+    width: 100dvw;
+    height: 100dvh;
+    @include flex-center-row;
+    align-items: center;
+    position: absolute;
+    transition: top 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.register-box {
+    display: flex;
+    justify-content: space-evenly;
+    flex-direction: column;
+    align-items: center;
+    width: 350px;
+    height: 620px;
+    background-color: white;
+    border-radius: 1rem;
+    gap: 0.5rem;
+    
+    @include respond(phone) {
+        width: 100%;
+        height: 100%;
+    }
+}
+
+.register-box h1 {
+    padding: 0.5rem;
+}
+
+.input-box a {
+    color: black;
+}
+
+.hr-box {
+    @include flex-center-row;
+    align-items: center;
+    gap: 1rem;
+    width: 75%;
+}
+
+.hr-box hr {
+    height: 1px;
+    width: 80%;
+}
+
+.label-login {
+    @include flex-center-row;
+    gap: 0.3em;
+    align-items: center;
+    width: 80%;
+}
+
+.label-login a, .label-login p {
+    font-size: 0.8rem;
+    color: black;
+}
+
+.label-login:hover a {
+    text-decoration: underline;
+}
+
+.input-box-register {
+    @include flex-center-colmun;
+    align-items: center;
+    gap: 1rem;
+    width: 90%;
+}
+
+.input-box-register label {
+    width: 90%;
+    background-color: rgba(128, 128, 128, 0.25);
+    @include flex-space-around-row;
+    align-items: center;
+    padding: 1rem;
+    border-radius: 100px;
+}
+
+.input-box-register label input {
+    width: 85%;
+    outline: none;
+    border: none;
+    background-color: transparent;
+    color: black;
+}
+
+.input-box-register a {
+    font-size: 0.8rem;
+    width: 85%;
+    text-align: right;
+}
+
+.input-box-register a:hover {
+    text-decoration: underline;
+}

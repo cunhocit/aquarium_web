@@ -1,0 +1,249 @@
+@use '../abstracts/mixins' as *;
+@use '../abstracts/variables' as *;
+
+.header {
+    width: 100dvw;
+    height: 15dvh;
+    z-index: 10;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: rgba(27, 27, 27, 0.99);
+    backdrop-filter: blur(5px);
+}
+
+.wrap-header-contents {
+    width: 100%;
+    height: 100%;
+    @include flex-space-between-row;
+}
+
+.nav-ul {
+    height: inherit;
+    @include flex-center-row;
+    align-items: center;
+    gap: 2rem;
+
+    @include respond(tablet) {
+        font-size: $font-tablet;
+        padding: 0.5rem;
+        position: absolute;
+        right: 0;
+        width: 230px;
+        max-height: 85dvh;
+        top: -1000%;
+        height: auto;
+        overflow: auto;
+        flex-direction: column;
+        justify-content: left;
+        justify-content: start;
+        background-color: rgba(27, 27, 27, 0.99);
+        gap: 1rem;
+        transition: .8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        z-index: -100;
+        
+        #search-li {
+            order: -1;
+        }
+        li{
+            width: 100%;
+        }
+        li a {
+            width: auto;
+        }
+    }
+
+    @include respond(phone) {
+        font-size: $font-phone;
+        padding: 0.5rem 1rem;
+        position: absolute;
+        top: -1000%;
+        width: 100%;
+        height: auto;
+        max-height: 85dvh;
+        overflow: auto;
+        gap: 1rem;
+        flex-direction: column;
+        justify-content: start;
+        background-color: rgba(27, 27, 27, 0.99);
+        transition: 0.7s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        z-index: -100;
+
+        li {
+            width: 100%;
+        }
+        li a {
+            width: auto;
+        }
+        #search-li {
+            order: -1;
+        }
+    }
+}
+
+.nav-ul.open {
+    z-index: 100;
+    top: 100%;
+}
+
+.nav-ul li ul {
+    backdrop-filter: blur(5px);
+    @include dropdown-menu;
+}
+
+.nav-ul li ul li {
+    height: auto;
+}
+
+.nav-ul li ul li a{
+    padding: 0.3rem;
+}
+
+.nav-ul li:hover > ul {
+    display: block;
+}
+
+.instruct svg{
+    transition: .3s;
+}
+
+.nav-ul li:hover > .instruct svg {
+    transform: rotate(180deg);
+}
+
+.nav-ul li {
+    height: 100%;
+    position: relative;
+    padding: 0.5rem;
+}
+
+.nav-ul li a {
+    height: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.nav-ul li a svg {
+    padding: 0.3rem;
+}
+
+.nav-ul li a {
+    @include underline-animation(white, 0.15rem);
+}
+
+#login-btn-li {
+    display: none;
+    cursor: pointer;
+    @include respond(tablet) {
+        display: inline-flex;
+    }
+    @include respond(phone) {
+        display: inline-flex;
+    }
+}
+
+#search-li {
+    display: flex;
+    align-items: center;
+}
+
+.search-bar {
+    background-color: rgba(77, 77, 77, 0.716);
+    border-radius: 20px;
+    @include flex-center-row;
+    align-items: center;
+    padding: 0.4rem 0.7rem;
+    
+    @include respond(phone) {
+        width: 100%;
+    }
+}
+
+.search-bar input {
+    background-color: transparent;
+    outline: none;
+    border: none;
+    width: inherit;
+    color: rgba(255, 255, 255, 0.722);
+}
+
+.search-bar svg {
+    color: rgba(255, 255, 255, 0.625);
+    transition: .3s;
+}
+
+.search-bar svg:hover {
+    color: rgba(255, 255, 255, 0.868);
+}
+
+.wrap-login-btn {
+    @include flex-center-row;
+    align-items: center;
+    background-color: transparent;
+    padding: 1rem;
+        
+    @include respond(tablet) {
+        display: none;
+    }        
+    @include respond(phone) {
+        display: none;
+    }
+}
+
+.login-btn {
+    @include button-base;
+    cursor: pointer;
+    width: 100px;
+    height: 40px;
+    background-color: white;
+    border-radius: 50px;
+    font-weight: bold;
+    border: 2px solid transparent;
+    transition: .3s;
+}
+
+.login-btn:hover {
+    border: 2px solid rgb(255, 255, 255);
+    background-color: rgba(27, 27, 27, 0.99);
+}
+
+.login-btn:hover p {
+    color: white;
+    @include text-trans(0.6s, 25px);
+}
+
+.sidebar-btn {
+    display: none;
+    align-items: center;
+    padding: 1rem;
+
+    svg{
+        color: white;
+    }
+
+    @include respond(tablet) {
+        @include flex-center-colmun;
+    }
+    @include respond(phone) {
+        @include flex-center-colmun;
+    }
+}
+
+
+
+
+.sidebar-ul li {
+    padding: 1rem;
+}
+
+.wrap-account-menu {
+    display: none;
+}
+
+.wrap-dropdown-account-menu {
+    display: none;
+}
+
+.drop-down-menu {
+    display: none;
+}

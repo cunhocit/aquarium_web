@@ -1,0 +1,17 @@
+@use '../../abstracts/mixins/flex' as *;
+
+.wrap-home-page {
+    width: 100dvw;
+    height: auto;
+    @include flex-row-center-center;
+    background-color: rgba(225, 225, 225, 0.382);
+}
+
+.wrap-work-space {
+    width: 100dvw;
+    height: 100dvh;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    flex-direction: column;
+}

@@ -1,0 +1,113 @@
+@use '../../abstracts/mixins' as *;
+
+.wrap-tips {
+    width: 100dvw;
+    height: auto;
+    align-items: center;
+}
+
+.tips {
+    height: auto;
+    min-height: 100dvh;
+    display: flex;
+    justify-content: start;
+    flex-direction: column;
+    align-items: center;
+}
+
+.wrap-tips h1 {
+    font-family: "Dancing Script", cursive;
+    width: 100dvw;
+    height: 25dvh;
+    text-align: center;
+    font-size: 5rem;
+    @include flex-center-row;
+    align-items: center;
+
+    @include respond(tablet) {
+        font-size: 4rem;
+        height: 20dvh;
+    }
+    @include respond(phone) {
+        font-size: 3.5rem;
+        height: 15dvh;
+    }
+}
+
+.tips-ul {
+    width: 100%;
+    @include flex-center-row;
+    align-items: start;
+    gap: 2rem;
+    margin-bottom: 2rem;
+
+    @include respond(phone) {
+        @include flex-center-colmun;
+        align-items: center;
+    }
+}
+
+.tips-ul li {
+    @include flex-space-between-column;
+    width: 27%;
+    gap: 1.5rem;
+
+    @include respond(phone) {
+        width: 70%;
+    }
+}
+
+.tips-img {
+    border-radius: 20px;
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    cursor: pointer;
+}
+
+.tips-text {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.tips-text p {
+    color: rgb(52, 52, 52);
+}
+
+.nextPage_btn {
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    width: 120px;
+    border-radius: 5rem;
+    background-color: rgba(27, 27, 27, 0.855);
+    box-shadow: 0 15px 20px rgba(165, 165, 165, 0.855)
+}
+
+.nextPage_btn a {
+    @include flex-center-row;
+    align-items: center;
+    padding: 0.6rem;
+    gap: 0.5rem;
+}
+
+.nextPage_btn p{
+    text-align: center;
+    color: rgb(255, 255, 255);
+}
+
+.nextPage_btn:hover a{
+    @include text-trans(0.5s, -30px)
+}
+
+.nextPage_btn:hover p , .nextPage_btn:hover svg{
+    color: black;
+}
+
+.nextPage_btn:hover {
+    background-color: rgba(165, 165, 165, 0.855);
+}

@@ -1,0 +1,24 @@
+
+// RESPONSIVE BREAKPOINT
+@mixin respond($breakpoint) {
+
+    @if $breakpoint == phone {
+        @media (max-width: 767px) {
+            @content;
+        }
+    }
+
+    @if $breakpoint == tablet {
+        @media (min-width: 768px) and (max-width: 1024px) {
+            @content;
+        }
+    }
+
+    @if $breakpoint == desktop {
+        @media (min-width: 1024px) {
+            @content;
+        }
+    }
+
+}
+

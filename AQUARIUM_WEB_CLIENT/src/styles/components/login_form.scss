@@ -1,0 +1,146 @@
+@use '../abstracts/mixins' as *;
+
+.wrap-form-login {
+    z-index: 1000;
+    width: 100dvw;
+    height: 100dvh;
+    @include flex-center-row;
+    align-items: center;
+    position: absolute;
+    transition: top 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.login-box {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    width: 350px;
+    height: 450px;
+    background-color: white;
+    border-radius: 1rem;
+    gap: 1rem;
+
+    @include respond(phone) {
+        width: 100%;
+        height: 100%;
+        justify-content: space-evenly;
+    }
+}
+
+.login-box h1 {
+    padding: 1.5rem;
+}
+
+.input-box {
+    @include flex-center-colmun;
+    align-items: center;
+    gap: 1.5rem;
+    width: 90%;
+}
+
+.input-box label {
+    width: 90%;
+    background-color: rgba(128, 128, 128, 0.25);
+    @include flex-space-around-row;
+    align-items: center;
+    padding: 1rem;
+    border-radius: 100px;
+}
+
+.input-box label input {
+    width: 85%;
+    outline: none;
+    border: none;
+    background-color: transparent;
+    color: black;
+}
+
+.input-box a {
+    font-size: 0.8rem;
+    width: 85%;
+    text-align: right;
+}
+
+.input-box a:hover {
+    text-decoration: underline;
+}
+
+.login-box a {
+    color: black;
+}
+
+
+.login-box-btn {
+    width: 80%;
+    padding: 1rem;
+    border: none;
+    font-size: 1rem;
+    border-radius: 100px;
+    background-color: rgba(0, 0, 0, 0.85);
+    cursor: pointer;
+    color: white;
+}
+
+.label-register {
+    @include flex-center-row;
+    gap: 0.2rem;
+    align-items: center;
+    width: 80%;
+}
+
+.label-register p {
+    font-size: 0.8rem;
+}
+
+.label-register a{
+    font-size: 0.8rem;
+}
+
+.label-register a:hover {
+    text-decoration: underline;
+}
+
+.box-icons {
+    @include flex-space-around-row;
+    width: 35%;
+}
+
+.box-icons svg {
+    font-size: 1.3rem;
+}
+
+.turn-off-login-box {
+    @include flex-center-row;
+    align-items: center;
+    gap: 0.3rem;
+    padding: 0.3rem 0.8rem;
+    border-radius: 100rem;
+    font-size: 0.8rem;
+    cursor: pointer;
+}
+
+.turn-off-login-box:hover {
+    text-decoration: underline;
+}
+
+.turn-off-login-box svg {
+    color: rgb(59, 59, 59);
+}
+
+.bottom-box {
+    @include flex-space-between-row;
+    width: 80%;
+}
+
+.fa-fb {
+    color: rgb(0, 0, 154);
+}
+
+.fa-gg {
+    color: rgb(238, 48, 0);
+}
+
+.fa-tt {
+    color: rgb(0, 144, 211);
+}

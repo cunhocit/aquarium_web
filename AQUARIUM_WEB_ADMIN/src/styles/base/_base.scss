@@ -1,0 +1,38 @@
+* {
+    box-sizing: border-box;
+    font-family: "Open Sans", sans-serif;
+    font-optical-sizing: auto;
+    font-style: normal;
+    font-variation-settings:
+    "wdth" 100;
+    margin: 0;
+    padding: 0;
+}
+
+*::-webkit-scrollbar {
+    display: none;
+}
+
+a {
+    text-decoration: none;
+}
+
+ul li {
+    list-style-type: none;
+}
+
+i {
+    cursor: pointer;
+}
+
+section {
+    scroll-snap-align: start;
+}
+
+a {
+    color: white;
+}
+
+svg {
+    cursor: pointer;
+}

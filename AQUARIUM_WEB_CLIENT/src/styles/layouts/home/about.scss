@@ -1,0 +1,169 @@
+@use '../../abstracts/mixins' as *;
+
+.wrap-about-us {
+    height: 100dvh;
+    width: 100dvw;
+}
+
+.wrap-about-us-header {
+    position: relative;
+    height: 100dvh;
+    width: 100dvw;
+    display: flex;
+    align-items: end;
+}
+
+.wrap-header-content {
+    background-color: rgba(0, 0, 0, 0.6);
+    width: 100dvw;
+    height: 100dvh;
+    display: flex;
+    justify-content: center;
+    flex-direction: row-reverse;
+    align-items: center;
+    padding: 8%;
+    gap: 5%;
+
+    @include respond(phone) {
+        @include flex-center-colmun;
+        gap: 3%;
+    }
+}
+
+.about-us-img img {
+    width: 450px;
+    height: 450px;
+    border-radius: 100%;
+    box-shadow: 0 15px 30px rgba(29, 251, 0, 0.432);
+    transition: 0.3s;
+    cursor: pointer;
+
+    @include respond(tablet) {
+        width: 350px;
+        height: 350px;
+    }
+
+    @include respond(phone) {
+        width: 200px;
+        height: 200px;
+    }
+}
+
+.about-us-img img:hover {
+    box-shadow: 0 15px 30px rgba(251, 134, 0, 0.432);
+}
+
+.about-us-content {
+    @include flex-center-colmun;
+}
+
+.wrap-about-us-text {
+    color: white;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.wrap-about-us-text h1 {
+    color: white;
+    font-size: 5rem;
+
+    @include respond(tablet) {
+        font-size: 3rem;
+    }
+    @include respond(phone) {
+        font-size: 2.5rem;
+    }
+}
+
+.wrap-about-us-text h3 {
+    color: white;
+    font-size: 2.5rem;
+    font-weight: 700;
+
+    @include respond(tablet) {
+        font-size: 1.5rem;
+    }
+    @include respond(phone) {
+        font-size: 1.4rem;
+    }
+}
+
+.wrap-about-us-text p {
+    color: white;
+    font-size: 1rem;
+
+    
+    @include respond(tablet) {
+        font-size: 0.9rem;
+    }
+    @include respond(phone) {
+        font-size: 0.8rem;
+    }
+}
+
+.wrap-about-us-text span {
+    color: rgb(0, 216, 83);
+}
+
+.social-icons {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    height: 5dvh;
+    @include respond(phone) {
+        margin-top: 0.5rem;
+        margin-bottom: 0.5rem;
+    }
+}
+
+.social-icons svg {
+    width: 1.5rem;
+    height: 1.5rem;
+    color: rgb(0, 169, 11);
+    transition: 0.2s;
+
+    @include respond(tablet) {
+        width: 1.4rem;
+        height: 1.4rem;
+    }
+    @include respond(phone) {
+        width: 1.3rem;
+        height: 1.3rem;
+    }
+}
+
+.social-icons svg:hover {
+    color: rgba(255, 145, 0, 0.9);
+    width: 1.7rem;
+    height: 1.7rem;
+}
+
+.about-us-next {
+    margin-top: 2rem;
+    @include bouncing-effect(4s, 25px);
+
+    @include respond(phone) {
+        margin-top: 1rem;
+        @include bouncing-effect(4s, 20px);
+    }
+}
+
+.about-us-next a {
+    background-color: rgba(0, 169, 11, 0.6);
+    padding: 0.8rem 1.5rem;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: 0.3s;
+
+    @include respond(phone) {
+        font-size: 0.8rem;
+    }
+}
+
+.about-us-next a:hover {
+    background-color: rgba(255, 145, 0, 0.6);
+}
+

@@ -1,0 +1,31 @@
+
+// text trans effect
+@mixin text-trans($time, $distanceY) {
+    animation: textTrans $time;
+    @keyframes textTrans {
+        0%{
+            opacity: 0;
+            transform: translateY($distanceY);
+        }
+        100%{
+            opacity: 1;
+            transform: translateY(0px);
+        }
+    }
+}
+
+// boucing effect
+@mixin bouncing-effect($time, $distanceY){
+    animation: bouncing $time infinite;
+    @keyframes bouncing {
+        0% {
+            transform: translateY(0px);
+        }
+        50% {
+            transform: translateY($distanceY);
+        }
+        100% {
+            transform: translateY(0px);
+        }
+    }
+}
