@@ -1,0 +1,17 @@
+.wrap-orders {
+    width: 95%;
+    height: auto;
+    min-height: 80dvh;
+    display: flex;
+    flex-direction: column;
+}
+
+.small-font-table .rdt_TableCell, .small-font-table .rdt_TableHeader {
+    font-size: 0.75rem;
+}
+
+.gr-btn {
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+}

@@ -1,6 +1,6 @@
 import { BrowserRouter as Router, Route, Routes  } from 'react-router-dom';
 import { HelmetProvider } from 'react-helmet-async';
-import MainLayout from "./layouts/main_layout";
+import MainLayout from "./pages/main_page";
 import './styles/main.scss';
 
 

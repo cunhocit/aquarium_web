@@ -1,23 +1,28 @@
+/* eslint-disable react/prop-types */
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faHome, faBoxes, faShoppingCart, faUsers, faTags, faBoxOpen, faChartBar, faAngleDown } from '@fortawesome/free-solid-svg-icons';
+import { faHome, faBoxes, faShoppingCart, faUsers, faBoxOpen, faArrowLeft, faGear } from '@fortawesome/free-solid-svg-icons';
 import { useState } from 'react';
 
-export default function Siderbar() {
+export default function Sidebar({isOpen, hidden, setActivePage}) {
     const [selectedItem, setSelectedItem] = useState('dashboard');
 
     const handleItemClick = (item) => {
         setSelectedItem(item);
+        setActivePage(item);
     }
     return (
         <>
-            <div className="wrap-sidebar">
+            <div className={`wrap-sidebar ${isOpen ? 'open' : ''}`}>
 
                 <div className="logo">
-                    <img src="public\logo-black.png" alt="" />
+                    <img src="public/logo-black.png" alt="" />
+                </div>
+
+                <div className={`hideSidebar ${isOpen ? 'openSb' : ''}`} >
+                    <FontAwesomeIcon icon={faArrowLeft} onClick={hidden}/>
                 </div>
 
                 <div className="wrap-action-sidebar">
-
                     <div className={`sidebar-item ${selectedItem === 'dashboard' ? 'active' : ''}`}
                         onClick={() => handleItemClick('dashboard')}
                     >
@@ -47,7 +52,6 @@ export default function Siderbar() {
                             <FontAwesomeIcon icon={faShoppingCart} />
                             <p>Đơn hàng</p>
                         </div>
-                        <FontAwesomeIcon icon={faAngleDown} />
                     </div>
 
                     <div
@@ -58,39 +62,26 @@ export default function Siderbar() {
                             <FontAwesomeIcon icon={faUsers} />
                             <p>Khách hàng</p>
                         </div>
-                        <FontAwesomeIcon icon={faAngleDown} />
                     </div>
 
-                    <div
-                        className={`sidebar-item ${selectedItem === 'promotions' ? 'active' : ''}`}
-                        onClick={() => handleItemClick('promotions')}
-                    >
-                        <div className='-item'>
-                            <FontAwesomeIcon icon={faTags} />
-                            <p>Khuyến mãi</p>
-                        </div>
-                        <FontAwesomeIcon icon={faAngleDown} />
-                    </div>
                     <div
                         className={`sidebar-item ${selectedItem === 'inventory' ? 'active' : ''}`}
                         onClick={() => handleItemClick('inventory')}
                     >
                         <div className="-item">
                             <FontAwesomeIcon icon={faBoxOpen} />
-                            <p>Nhập kho</p>
+                            <p>Kho hàng</p>
                         </div>
-                        <FontAwesomeIcon icon={faAngleDown} />
                     </div>
                     
                     <div
-                        className={`sidebar-item ${selectedItem === 'reports' ? 'active' : ''}`}
-                        onClick={() => handleItemClick('reports')}
+                        className={`sidebar-item ${selectedItem === 'settings' ? 'active' : ''}`}
+                        onClick={() => handleItemClick('settings')}
                     >
                         <div className="-item">
-                            <FontAwesomeIcon icon={faChartBar} />
-                            <p>Báo cáo</p>
+                            <FontAwesomeIcon icon={faGear} />
+                            <p>Cài đặt</p>
                         </div>
-                        <FontAwesomeIcon icon={faAngleDown} />
                     </div>
                 </div>
             </div>

@@ -1,4 +1,5 @@
 @use '../abstracts/mixins/flex' as *;
+@use '../abstracts/mixins/respond' as *;
 
 .wrap-header {
     width: 95%;
@@ -88,4 +89,14 @@
     font-size: 0.8rem;
     color: rgb(0, 142, 75);
     font-weight: bold;
+}
+
+.showSidebar {
+    display: none;
+    @include respond(tablet) {
+        display: block;
+    }
+    @include respond(phone) {
+        display: block;
+    }
 }

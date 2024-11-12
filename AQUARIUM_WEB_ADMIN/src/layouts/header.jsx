@@ -1,8 +1,9 @@
+/* eslint-disable react/prop-types */
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faMagnifyingGlass, faBell, faMoon, faAngleDown } from '@fortawesome/free-solid-svg-icons';
+import { faMagnifyingGlass, faBell, faMoon, faAngleDown, faCoffee } from '@fortawesome/free-solid-svg-icons';
 import { useState } from 'react';
 
-export default function Header() {
+export default function Header({openSidebar}) {
 
     const [isDropDown, setDropDown] = useState(false);
     const toggleDropDown = () => {
@@ -11,7 +12,11 @@ export default function Header() {
 
     return (
         <>
-        <div className="wrap-header">
+        <div className="wrap-header">   
+
+            <div className='showSidebar' onClick={openSidebar}>
+                <FontAwesomeIcon icon={faCoffee} />
+            </div>
 
             <div className="search-bar">
                 <input type="text" placeholder='Tìm kiếm' />
@@ -28,7 +33,7 @@ export default function Header() {
                 </div>
 
                 <div className='admin-avatar'>
-                    <img src="public\vite.svg" alt="" />
+                    <img src="public/vite.svg" alt="" />
                     <p>cunhocit</p>
                     <FontAwesomeIcon icon={faAngleDown}/>
                 </div>

@@ -1,13 +1,31 @@
-// base
+// BASE
 @use './base/base';
 
-// components
+
+// COMPONENTS
 @use './components/header.scss';
 @use './components/sidebar.scss';
 
-// layouts
-@use './layouts/home/main_layout.scss';
-@use './layouts/dashboard/dashboard.scss';
 
-// font
+// LAYOUTS
+@use './layouts/home/main_layout.scss';
+@use './layouts/login.scss';
+@use './layouts/register.scss';
+
+    // dashboard
+    @use './layouts/dashboard/dashboard.scss';
+    @use './layouts/dashboard/charts.scss';
+
+    // orders
+    @use './layouts/orders/orders.scss';
+
+    // products 
+    @use './layouts/products/products.scss';
+    @use './layouts/products/add_prd.scss';
+
+    // inventory
+    @use './layouts/inventory/inventory.scss';
+
+
+// VENDORS
 @use './vendor/vendor';

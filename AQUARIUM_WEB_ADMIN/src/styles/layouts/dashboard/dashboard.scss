@@ -1,9 +1,95 @@
 @use '../../abstracts/mixins/flex' as *;
+@use '../../abstracts/mixins/respond' as *;
 
 .wrap-dashboard {
     width: 95%;
+    height: auto;
 }
 
 .dashboard-title {
     color: rgb(54, 54, 54);
+    padding: 1rem 0;
 }
+
+.data-overview {
+    padding: 0.5rem 0;
+    @include flex-row-center-center;
+    gap: 2%;
+    flex-wrap: wrap;
+}
+
+.data-box {
+    background-color: white;
+    padding: 1rem;
+    border-radius: 10px;
+    width: 23%;
+    @include flex-column-space-between-center;
+    height: 150px;
+
+    @include respond(phone) {
+        width: 48%;
+        margin-top: 1rem;
+    }
+}
+
+.title-box {
+    @include flex-row-space-between-center;
+    width: 100%;
+    padding: 0.5rem;
+}
+
+.data-box h3 {
+    width: 100%;
+    text-align: right;
+    padding: 0.5rem;
+}
+
+.data-box hr {
+    width: 100%;
+}
+
+.sale-title {
+    width: 100%;
+    font-size: 0.9rem;
+    padding: 0.5rem;
+    color: rgb(0, 0, 0);
+    font-weight: 500;
+}
+
+.sale-title {
+    @include respond(tablet) {
+        font-size: 0.8rem;
+    }
+}
+
+.data-box-top {
+    width: 90%;
+    @include flex-row-space-between-center;
+}
+
+.in4-box {
+    @include flex-column-center-center;
+    text-align: right;
+}
+
+.in4-box p {
+    @include respond(tablet) {
+        font-size: 0.8rem;
+        font-weight: 400;
+    }
+}
+
+.in4-box h3 {
+    @include respond(tablet) {
+        font-size: 0.8rem;
+    }
+}
+
+.data-box-top svg {
+    font-size: 1.5rem;
+
+    @include respond(tablet) {
+        font-size: 1.3rem;
+    }
+}
+
