@@ -1,0 +1,59 @@
+@use '../../abstracts/mixins/flex' as *;
+
+.wrap-settings {
+    width: 95%;
+    height: auto;
+    min-height: 80dvh;
+    display: flex;
+    flex-direction: column;
+}
+
+.title_box {
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.title_box svg {
+    font-size: 1.5rem;
+}
+
+.wrap-body-settings {
+    width: 100%;
+    height: 80dvh;
+    @include flex-row-space-between-center;
+}
+
+.wrap-admin-info {
+    background-color: white;
+    width: 100%;
+    height: 100%;
+    border-radius: 5px;
+}
+
+.wrap-setting-func {
+    background-color: white;
+    width: 20%;
+    height: 100%;
+    border-radius: 5px;
+    padding: 1rem;
+}
+
+.wrap-admin-info h3 {
+    border-bottom: 1px solid gray;
+    padding: 1rem;
+}
+
+.admin-info {
+    padding: 1rem 2rem;
+}
+
+.-w-admin-info {
+    width: 70%;
+    border: 1px solid black;
+}
+
+.value_admin_box {
+
+}

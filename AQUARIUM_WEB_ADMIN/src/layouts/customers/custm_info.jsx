@@ -1,10 +1,9 @@
 /* eslint-disable react/prop-types */
-
+import { useRef, useState } from "react";
 import { faBackwardStep, faGear, faUpload } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { useState, useRef } from "react";
 
-export default function ProductInfo({isOpen, isBackPrdList}) {
+export default function CustomerInfo({isOpen, isBackPrdList}) {
     const fileInputRef = useRef(null);
     const handleUploadClick = () => {
         fileInputRef.current.click();
@@ -14,12 +13,13 @@ export default function ProductInfo({isOpen, isBackPrdList}) {
     const handleUnlockInput = () => {
         setUnlockInput(prev => !prev);
     }
+
     return(
     <>
     <div className="wrap-add-prd" style={{display: isOpen ? 'flex' : 'none'}}>
         <div className="wrap-lef-add-prd">
             <div className="wrap-header-command">
-                <h3>Chi tiết sản phẩm</h3>
+                <h3>Chi tiết đơn hàng</h3>
                 <div className="gr-btn">
                     <div className="-left-back-prd-list" onClick={handleUnlockInput}>
                         <FontAwesomeIcon icon={faGear} />
@@ -34,33 +34,46 @@ export default function ProductInfo({isOpen, isBackPrdList}) {
 
             <div className="-add-prd-form" >
                 <label className="value_box" htmlFor="">
-                    <p>ID sản phẩm</p>
-                    <input type="text"  disabled/>
+                    <p>ID khách hàng</p>
+                    <input type="text" disabled/>
                 </label>
 
                 <label className="value_box" htmlFor="">
-                    <p>Danh mục</p>
-                    <select name="" id="" disabled={!isUnlockInput}>
-                        <option value="">Cá cảnh</option>
-                        <option value="">Cây thủy sinh</option>
-                        <option value="">Thức ăn</option>
-                        <option value="">Phụ kiện</option>
-                    </select>
-                </label>
-
-                <label className="value_box" htmlFor="">
-                    <p>Tên sản phẩm</p>
+                    <p>Họ và tên</p>
                     <input type="text" disabled={!isUnlockInput} />
                 </label>
 
                 <label className="value_box" htmlFor="">
-                    <p>Mô tả</p>
-                    <textarea name="" id=""  disabled={!isUnlockInput}></textarea>
+                    <p>Số điện thoại</p>
+                    <input type="phone"  disabled={!isUnlockInput}/>
                 </label>
 
-                <label htmlFor="" className="value_box">
-                    <p>Giá tiền</p>
-                    <input type="number" min={0}  disabled={!isUnlockInput}/>
+                <label className="value_box" htmlFor="">
+                    <p>Email</p>
+                    <input type="email" disabled={!isUnlockInput} />
+                </label>
+
+                <label className="value_box" htmlFor="">
+                    <p>Ngày đăng ký</p>
+                    <input type="date" disabled={!isUnlockInput} />
+                </label>
+
+                <label className="value_box" htmlFor="">
+                    <p>Tổng chi tiêu</p>
+                    <input type="number" disabled={!isUnlockInput} />
+                </label>
+
+                <label className="value_box" htmlFor="">
+                    <p>Trạng thái</p>
+                    <input type="text" />
+                </label>
+
+                <label className="value_box" htmlFor="">
+                    <p>Trang thái</p>
+                    <select name="" id=""  disabled={!isUnlockInput}>
+                        <option value="">Online</option>
+                        <option value="">Offline</option>
+                    </select>
                 </label>
 
                 <label htmlFor="" className="value_box">
@@ -77,7 +90,7 @@ export default function ProductInfo({isOpen, isBackPrdList}) {
         </div>
         
         <div className="wrap-right-add-prd">
-            <h3>Hình ảnh sản phẩm</h3>
+            <h3>Avatar</h3>
             <img src="/public/logo-black.png" alt="" />
         </div>
     </div>

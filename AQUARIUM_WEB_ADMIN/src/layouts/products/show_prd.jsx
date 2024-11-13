@@ -36,10 +36,10 @@ const ShowPrd = ({isOpen, handleOpenAdd}) => {
 
   const columns = [
     {
-      name: <span style={{ fontSize: '0.9rem' }}> Mã </span>,
+      name: <span style={{ fontSize: '0.9rem' }}> ID </span>,
       selector: row => row.id,
       sortable: true,
-      width: '80px'
+      width: '100px'
     },
     {
       name: <span
@@ -71,7 +71,7 @@ const ShowPrd = ({isOpen, handleOpenAdd}) => {
                   fontSize: '0.9rem'
               }}
           >
-              Số lượng còn
+              Số lượng
           </span>,
       selector: row => row.remaining,
       sortable: true,

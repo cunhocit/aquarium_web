@@ -6,7 +6,7 @@ import Sidebar from '../layouts/sidebar';
 import usePageSwitch from '../hooks/usePageSwitch';
 import Login from '../layouts/login';
 import Register from '../layouts/register';
-// import { useLoginRegister } from '../hooks/useForm';
+import { useLoginRegister } from '../hooks/useForm';
 
 export default function MainLayout() {
 
@@ -16,7 +16,7 @@ export default function MainLayout() {
     }
     const { setActivePage, renderPage } = usePageSwitch();
 
-    // const { isOpenForm, handleOpenForm } = useLoginRegister();
+    const { isOpenForm, handleOpenForm } = useLoginRegister();
 
     return(
         <>
@@ -24,13 +24,13 @@ export default function MainLayout() {
 
             {/* login */}
             <Login
-                // openRegister={handleOpenForm}
-                // isOpenForm={isOpenForm}
+                openRegister={handleOpenForm}
+                isOpenForm={isOpenForm}
             />
 
             <Register
-                // openLogin={handleOpenForm} 
-                // isOpenForm={isOpenForm}
+                openLogin={handleOpenForm} 
+                isOpenForm={isOpenForm}
             />
 
             {/* title */}

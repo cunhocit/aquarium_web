@@ -4,11 +4,11 @@ import { faUser, faLock, faEnvelope, faHeart, faCoffee } from '@fortawesome/free
 import { faFacebook, faGoogle, faTwitter } from '@fortawesome/free-brands-svg-icons';
 
 export default function Register(
-    // {openLogin, isOpenForm}
+    {openLogin, isOpenForm}
 ) {
     return (
         <div className="wrap-form-register " style={{
-                // display: isOpenForm ? 'block' : 'none'
+                display: !isOpenForm ? 'none' : 'block'
             }}>
             <div className="register-box">
                 <h1>Đăng ký
@@ -18,12 +18,12 @@ export default function Register(
                 <div className="input-box-register">
                     <label htmlFor="">
                         <FontAwesomeIcon icon={faUser} />
-                        <input type="text" placeholder="Tên người dùng" />
+                        <input type="text" placeholder='Họ và tên' />
                     </label>
 
                     <label htmlFor="">
-                        <FontAwesomeIcon icon={faUser} />
-                        <input type="text" placeholder='Tên đăng nhập' />
+                        <FontAwesomeIcon icon={faEnvelope} />
+                        <input type="email" placeholder="Email" />
                     </label>
 
                     <label htmlFor="">
@@ -38,7 +38,7 @@ export default function Register(
 
                     <label htmlFor="">
                         <FontAwesomeIcon icon={faEnvelope} />
-                        <input type="email" placeholder="Email" />
+                        <input type="phone" placeholder="Số điện thoại" />
                     </label>
                 </div>
                 
@@ -53,7 +53,7 @@ export default function Register(
                 <div className="label-login">
                     <p>Đã có tài khoản!!...</p>
                     <a href="#" 
-                        // onClick={openLogin}
+                        onClick={openLogin}
                     >Đăng nhập</a>
                 </div>
 

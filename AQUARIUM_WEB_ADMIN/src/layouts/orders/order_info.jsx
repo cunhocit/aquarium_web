@@ -34,7 +34,7 @@ export default function OrderInfo({isOpen, isBackPrdList}) {
 
             <div className="-add-prd-form" >
                 <label className="value_box" htmlFor="">
-                    <p>Mã đơn hàng</p>
+                    <p>ID đơn hàng</p>
                     <input type="text" disabled={!isUnlockInput}/>
                 </label>
 
@@ -50,22 +50,25 @@ export default function OrderInfo({isOpen, isBackPrdList}) {
 
                 <label className="value_box" htmlFor="">
                     <p>Số lượng</p>
-                    <input type="text" disabled={!isUnlockInput} />
+                    <input type="number" disabled={!isUnlockInput} />
                 </label>
 
                 <label className="value_box" htmlFor="">
                     <p>Giá trị</p>
-                    <input type="text" disabled={!isUnlockInput} />
+                    <input type="number" disabled={!isUnlockInput} />
                 </label>
 
                 <label className="value_box" htmlFor="">
                     <p>Ngày đặt hàng</p>
-                    <input type="text" disabled={!isUnlockInput} />
+                    <input type="date" disabled={!isUnlockInput} />
                 </label>
 
                 <label className="value_box" htmlFor="">
                     <p>Phương thức thanh toán</p>
-                    <input type="text" disabled={!isUnlockInput} />
+                    <select name="" id=""  disabled={!isUnlockInput}>
+                        <option value="">Thanh toán khi nhận hàng</option>
+                        <option value="">Thanh toán trước - chuyển khoản</option>
+                    </select>
                 </label>
 
                 <label className="value_box" htmlFor="">

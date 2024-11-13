@@ -23,8 +23,11 @@
     @use './layouts/products/products.scss';
     @use './layouts/products/add_prd.scss';
 
-    // inventory
-    @use './layouts/inventory/inventory.scss';
+    // customers
+    @use './layouts/customers/customers.scss';
+
+    // settings
+    @use './layouts/settings/settings.scss';
 
 
 // VENDORS

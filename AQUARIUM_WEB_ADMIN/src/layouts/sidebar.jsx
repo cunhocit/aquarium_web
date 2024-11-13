@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faHome, faBoxes, faShoppingCart, faUsers, faBoxOpen, faArrowLeft, faGear } from '@fortawesome/free-solid-svg-icons';
+import { faHome, faBoxes, faShoppingCart, faUsers, faArrowLeft, faGear } from '@fortawesome/free-solid-svg-icons';
 import { useState } from 'react';
 
 export default function Sidebar({isOpen, hidden, setActivePage}) {
@@ -61,16 +61,6 @@ export default function Sidebar({isOpen, hidden, setActivePage}) {
                         <div className="-item">
                             <FontAwesomeIcon icon={faUsers} />
                             <p>Khách hàng</p>
-                        </div>
-                    </div>
-
-                    <div
-                        className={`sidebar-item ${selectedItem === 'inventory' ? 'active' : ''}`}
-                        onClick={() => handleItemClick('inventory')}
-                    >
-                        <div className="-item">
-                            <FontAwesomeIcon icon={faBoxOpen} />
-                            <p>Kho hàng</p>
                         </div>
                     </div>
                     

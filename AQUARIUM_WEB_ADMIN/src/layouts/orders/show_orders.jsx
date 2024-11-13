@@ -138,10 +138,10 @@ const ShowOrders = () => {
   // Cấu hình các cột của bảng
   const columns = [
     {
-      name: <span style={{ fontSize: '0.9rem' }}> Mã đơn</span>,
+      name: <span style={{ fontSize: '0.9rem' }}> ID </span>,
       selector: row => row.orderId,
       sortable: true,
-      width: '100px'
+      width: '90px'
     },
     {
       name: <span style={{ fontSize: '0.9rem' }}> Tên khách hàng </span>,
@@ -159,7 +159,7 @@ const ShowOrders = () => {
       name: <span style={{ fontSize: '0.9rem' }}> Số lượng </span>,
       selector: row => row.quantity,
       sortable: true,
-      width: '90px',
+      width: '110px',
     },
     {
       name: <span style={{ fontSize: '0.9rem' }}> Giá trị </span>,
@@ -189,7 +189,7 @@ const ShowOrders = () => {
       name: <span style={{ fontSize: '0.9rem' }}></span>,
       selector: row => row.view,
       sortable: true,
-      width: '120px'
+      width: '110px'
     },
   ];
 

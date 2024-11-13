@@ -1,5 +1,5 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faBoxes, faShoppingCart, faDollarSign, faHouse } from '@fortawesome/free-solid-svg-icons';
+import { faBoxes, faShoppingCart, faDollarSign, faUser } from '@fortawesome/free-solid-svg-icons';
 
 export default function OverviewDashboard() {
     return(
@@ -40,15 +40,15 @@ export default function OverviewDashboard() {
                 </div>
                 <div className="data-box">
                     <div className='data-box-top'>
-                        <FontAwesomeIcon icon={faHouse } />
+                        <FontAwesomeIcon icon={faUser} />
                         <div className="in4-box">
-                            <p>Tình trạng kho</p>
-                            <h3>80%</h3>
+                            <p>Tổng số khách hàng</p>
+                            <h3>885</h3>
                         </div>
                     </div>
                     <hr />
                     <p className="sale-title">
-                        Còn <span style={{color: "green"}}>20%</span> sức chứa
+                        <span style={{color: "green"}}>209</span> tài khoản đang online
                     </p>
                 </div>
             </div>

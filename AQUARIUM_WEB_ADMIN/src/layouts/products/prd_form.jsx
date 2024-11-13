@@ -15,8 +15,8 @@ export default function AddPrdForm({isForm}) {
             style={{display: !isForm ? 'flex' : 'none'}}
         >
             <label className="value_box" htmlFor="">
-                <p>Mã sản phẩm</p>
-                <input type="text" />
+                <p>ID sản phẩm</p>
+                <input type="text" disabled/>
             </label>
 
             <label className="value_box" htmlFor="">
