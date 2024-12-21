@@ -3,7 +3,7 @@ import Countdown from 'react-countdown';
 export default function ClockCountdown() {
 
     // định dạng YYYY-MM-DDTHH:MM:SS
-    const flashSaleEndDate = new Date('2024-11-09T00:00:00');
+    const flashSaleEndDate = new Date('2024-12-20T00:00:00');
     const formatTime = (time) => String(time).padStart(2, '0');
 
     const renderer = ({ hours, minutes, seconds, completed }) => {

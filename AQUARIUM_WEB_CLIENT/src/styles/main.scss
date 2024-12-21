@@ -1,31 +1,45 @@
-// abstracts
-@use './abstracts/mixins';
-@use'./abstracts/variables';
-
 // base
 @use './base/base';
 
 // components
-@use './components/footer.scss';
-@use './components/navigation.scss';
-@use './components/login_form.scss';
-@use './components/register_form.scss';
-@use './components/forgot_password.scss';
-@use './components/count_down.scss';
+    @use './components/footer.scss';
+    @use './components/navigation.scss';
+    @use './components/count_down.scss';
+    @use './components/shopping_cart.scss';
 
-// layouts
-@use './layouts/home/header.scss';
-@use './layouts/home/slide_show.scss';
-@use './layouts/home/tips.scss';
-@use './layouts/home/about.scss';
+// pages
+    @use './pages/home/header.scss';
+    @use './pages/home/about.scss';
+    @use './pages/home/slide_show.scss';
+    @use './pages/home/tips.scss';
 
-@use './layouts/store/store_banner.scss';
-@use './layouts/store/flash_sale.scss';
-@use './layouts/store/show_product.scss';
-@use './layouts/store/hot_product.scss';
+    @use './pages/store/store_banner.scss';
+    @use './pages/store/flash_sale.scss';
+    @use './pages/store/top_selling.scss';
+    @use './pages/store/show_product_list.scss';
 
-@use './layouts/search/search_page.scss';
-@use './layouts/search/filer_product.scss';
+    @use './pages/search/search_page.scss';
+    @use './pages/search/filer_product.scss';
+
+    @use './pages/product_detail/product_detail.scss';
+    @use './pages/product_detail/comment.scss';
+    @use './pages/product_detail/product_relaxted.scss';
+
+    @use './pages/payment/payment.scss';
+
+    @use './pages/user/user.scss';
+    @use './pages/user/user_info.scss';
+    @use './pages/user/user_order.scss';
+    @use './pages/user/user_change_password.scss';
+    @use './pages/user/user_diposit.scss';
+
+    @use './pages/post/post.scss';
+    
+    @use './pages/contact/contact.scss';
+
+
+@use './pages/login.scss';
+@use './pages/register.scss';
 
 // font
 @use './vendor/font';

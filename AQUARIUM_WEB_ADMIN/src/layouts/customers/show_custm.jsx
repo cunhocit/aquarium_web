@@ -1,142 +1,128 @@
-/* eslint-disable react/prop-types */
-import { useState } from 'react';
-import DataTable from 'react-data-table-component';
-import CustomerInfo from './custm_info';
+/* eslint-disable no-unused-vars */
+import DataTable from "react-data-table-component";
+import { getAllCusAPI } from "../../app/api/customersApi";
+import { useGetCustomers } from "../../hooks/useCustomer";
+import { useState } from "react";
+import { Link } from "react-router-dom";
 
-const ShowCutomers = () => {
-  const [search, setSearch] = useState('');
+const ShowCustomers = () => {
 
-  const handleFilter = (event) => {
-    setSearch(event.target.value);
-  };
-
-  const [isShowInfo, setShowInfo] = useState(false);
-  const handleInfoPrd = () => {
-    setShowInfo(prev => !prev);
-  }
-
-  // Dữ liệu mẫu cho đơn hàng
-  const data = [
-    {
-        customerId: 'CUS001',
-        customerName: 'Nguyễn Văn A',
-        email: 'abc@gmail.com',
-        phone: '0365669884',
-        dateRegis: '22/12/2024',
-        totalExp: '2,000,000 VND',
-        status: 'online',
-        view: <div style={{color: 'black', cursor: 'pointer'}} onClick={() => handleInfoPrd()} >[Xem chi tiết]</div>
-      }
-  ];
-  
-
-  // Lọc dữ liệu đơn hàng theo tên khách hàng
-  const filteredData = data.filter(item =>
-    item.customerName.toLowerCase().includes(search.toLowerCase())
-  );
-
-  // Cấu hình các cột của bảng
   const columns = [
     {
-      name: <span style={{ fontSize: '0.9rem' }}> ID </span>,
-      selector: row => row.customerId,
+      name: <span style={{ fontSize: "0.9rem" }}> ID </span>,
+      selector: (row) => row.id,
       sortable: true,
-      width: '100px'
+      width: "50px",
     },
     {
-      name: <span style={{ fontSize: '0.9rem' }}> Họ và tên </span>,
-      selector: row => row.customerName,
+      name: <span style={{ fontSize: "0.9rem" }}> Họ và tên </span>,
+      selector: (row) => row.name,
       sortable: true,
-      width: '150px'
+      width: "150px",
     },
     {
-      name: <span style={{ fontSize: '0.9rem' }}> Email </span>,
-      selector: row => row.email,
+      name: <span style={{ fontSize: "0.9rem" }}> Email </span>,
+      selector: (row) => row.email,
       sortable: true,
-      width: '150px'
+      width: "200px",
     },
     {
-      name: <span style={{ fontSize: '0.9rem' }}> Số điện thoại </span>,
-      selector: row => row.phone,
+      name: <span style={{ fontSize: "0.9rem" }}> Số điện thoại </span>,
+      selector: (row) => row.phone,
       sortable: true,
-      width: '140px',
+      width: "140px",
     },
     {
-      name: <span style={{ fontSize: '0.9rem' }}> Ngày đăng ký </span>,
-      selector: row => row.dateRegis,
+      name: <span style={{ fontSize: "0.9rem" }}> Ngày đăng ký </span>,
+      selector: (row) => {
+        const date = new Date(row.created_at);
+        return date.toLocaleString();
+      },
       sortable: true,
-      width: '140px'
     },
     {
-      name: <span style={{ fontSize: '0.9rem' }}> Tổng chi tiêu </span>,
-      selector: row => row.totalExp,
+      name: <span style={{ fontSize: "0.9rem" }}> Số dư </span>,
+      selector: (row) =>  new Intl.NumberFormat('vi-VN').format(row.balance),
       sortable: true,
-      width: '150px'
+      width: "140px",
     },
     {
-      name: <span style={{ fontSize: '0.9rem' }}> Trạng thái </span>,
-      selector: row => row.status,
+      name: <span style={{ fontSize: "0.9rem" }}> Trạng thái </span>,
+      selector: (row) => (row.status == 1 ? "Offline" : "Online"),
       sortable: true,
-      width: '150px'
+      cell: (row) => (
+        <span style={{ color: row.status === 1 ? "red" : "green" }}>
+          {row.status == 1 ? "Offline" : "Online"}
+        </span>
+      )
     },
     {
-      name: <span style={{ fontSize: '0.9rem' }}></span>,
-      selector: row => row.view,
-      sortable: true,
-      width: '120px'
+      name: <span style={{ fontSize: "0.9rem" }}>Hành động</span>,
+      cell: row => (
+      <Link style={{cursor: 'pointer', color: 'black'}}
+        to={`/customer_info/${row.id}`}
+      >
+        [Xem chi tiết]
+        </Link>)
     },
   ];
+
+  const { data, fetchData, isLoading } = useGetCustomers();
+  const [search, setSearch] = useState("");
+
+  if (isLoading) return <div>Đang tải...</div>
+  
+  const filterData = data.filter(
+    (item) => item.name && item.name.toLowerCase().includes(search.toLowerCase())
+  )
 
   return (
     <>
       <div className="wrap-table-prod">
-        <div style={{display: !isShowInfo ? 'block' : 'none'}}>
-          <div className='-header-table-prd' style={{
-            borderBottom: "1px solid gray",
-            borderRadius: "5px 5px 0 0"
-          }}>
-            <div className='-header-lef'>
+        <div >
+          <div
+            className="-header-table-prd"
+            style={{
+              borderRadius: "5px",
+            }}
+          >
+            <div className="-header-lef">
               <input
                 type="text"
-                placeholder="Tìm kiếm đơn hàng"
-                value={search}
-                onChange={handleFilter}
+                placeholder="Tìm kiếm khách hàng"
                 style={{
-                  marginRight: '10px',
-                  padding: '10px',
-                  width: '300px',
-                  borderRight: 'none',
-                  borderLeft: 'none',
-                  borderTop: 'none',
-                  background: 'rgba(251, 251, 251, 0.971)',
-                  outline: 'none',
-                  borderRadius: '5px 5px 0 0'
+                  marginRight: "10px",
+                  padding: "10px",
+                  width: "300px",
+                  border: '1px solid #38383849',
+                  background: "rgb(255, 255, 255)",
+                  outline: "none",
+                  borderRadius: "5px",
                 }}
+                value={search}
+                onChange={e => setSearch(e.target.value)}
               />
             </div>
           </div>
 
-          <div style={{ maxHeight: '100%', overflowY: 'auto', borderRadius: "10px"}}>
+          <div className="-table-prd"
+          >
             <DataTable
               columns={columns}
-              data={filteredData}
+              data={filterData}
               fixedHeader
-              fixedHeaderScrollHeight="550px"
+              fixedHeaderScrollHeight="100%"
               responsive
               highlightOnHover
               striped
               pagination={false}
-              className="small-font-table" 
+              className="small-font-table"
             />
           </div>
-        </div>
-    
-        <div className="wrap-prd-info">
-            <CustomerInfo isOpen={isShowInfo} isBackPrdList={handleInfoPrd}/>
         </div>
       </div>
     </>
   );
 };
 
-export default ShowCutomers;
+export default ShowCustomers;

@@ -1,0 +1,108 @@
+@use '../../abstracts/mixins/flex' as *;
+@use '../../abstracts/mixins/respond' as *;
+@use '../../abstracts/mixins/effect' as *;
+@use '../../abstracts/mixins/sevcies' as *;
+
+.wrap-contents {
+    width: 100dvw;
+    height: 100dvh;
+    scroll-snap-type: y mandatory;
+    overflow-y: scroll;
+}
+
+.wrap-header {
+    width: 100dvw;
+    height: 100dvh;
+    z-index: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.header-bg-video {
+    width: 100dvw;
+    height: 100dvh;
+    object-fit: cover;
+    z-index: -1;
+    position: absolute;
+    left: 0;
+}
+
+.header-contents {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.5);
+    gap: 2%;
+    @include bouncing-effect(3s, 25px);
+}
+
+.contents-list {
+    width: 100%;
+    padding: 2%;
+    animation: header-contents-animation 3s infinite;
+    @include flex-column-center-center;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.header-contents h1{
+    color: white;
+    font-size: 6rem;
+    text-align: center;
+    font-family: "Dancing Script";
+
+    @include respond(tablet) {
+        font-size: 4rem;
+    }
+    @include respond(phone) {
+        font-size: 3rem;
+    }
+}
+
+.header-contents p {
+    color: rgba(255, 255, 255, 0.918);
+    width: 50dvw;
+    text-align: center;
+    font-family: "Dancing Script";
+    font-size: 1.3rem;
+
+    @include respond(tablet) {
+        width: 60%;
+        font-size: 1rem;
+    }
+    @include respond(phone) {
+        width: 90%;
+        font-size: 0.9rem;
+    }
+}
+
+.header-contents a{
+    font-family: "Dancing Script";
+    background-color: rgba(0, 0, 0, 0.5);
+    cursor: pointer;
+    color: white;
+    font-size: 1.5rem;
+    padding: 0.8rem 1.2rem;
+    border: 1px solid white;
+    border-radius: 2.5rem;
+    transition: 0.5s;
+
+    @include respond(tablet) {
+        font-size: 1rem;
+        padding: 0.6rem 1rem;
+    }
+    @include respond(phone) {
+        font-size: 0.8rem;
+        padding: 0.5rem 0.8rem;
+    }
+}
+
+.header-contents a:hover {
+    color: rgb(0, 216, 83);
+    border: 1px solid rgb(0, 216, 83);
+}

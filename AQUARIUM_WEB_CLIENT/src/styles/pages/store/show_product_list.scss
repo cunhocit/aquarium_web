@@ -1,0 +1,119 @@
+@use '../../abstracts/mixins/effect' as *;
+@use '../../abstracts/mixins/respond' as *;
+@use '../../abstracts/mixins/flex' as *;
+
+.wrap-show-product-list {
+    @include flex-column-center-center;
+    align-items: center;
+    padding: 2rem 0;
+    background-color: rgb(240, 240, 240);
+}
+
+.title-show-product {
+    width: 80dvw;
+
+    @include respond(tablet) {
+        width: 95dvw;
+    }
+    @include respond(phone) {
+        width: 95dvw;
+    }
+}
+
+.title-show-product p {
+    background-color: white;
+    text-align: center;
+    color: rgb(0, 72, 41);
+    font-size: 2rem;
+    padding: 0.5rem;
+    font-weight: 500;
+    border-radius: 5px 5px 0 0;
+    
+    @include respond(tablet) {
+        font-size: 2rem;
+    }
+    @include respond(phone) {
+        font-size: 1.5rem;
+    }
+}
+
+.title-show-product hr {
+    border: 2px solid rgb(0, 86, 49);
+}
+
+.util-wrap-list-product {
+    width: 80dvw;
+    height: auto;
+    flex-wrap: wrap;
+    display: flex;
+
+    @include respond(tablet) {
+        width: 90dvw;
+    }
+    @include respond(phone) {
+        width: 95dvw;
+    }
+}
+
+.wrap-list-product {
+    flex-wrap: wrap;
+    display: flex;
+    gap: 0.5rem;
+    width: 100%;
+    padding: 0.5rem;
+
+    @include respond(tablet) {
+        width: 90dvw;
+    }
+    @include respond(phone) {
+        width: 95dvw;
+    }
+
+    .-w-list-product-item {
+        border: 1px solid rgba(51, 49, 49, 0.096);
+        width: 19% !important;
+        height: 240px !important;
+
+        @include respond(phone) {
+            width: 32% !important;
+        }
+
+        @include respond(mini_phone) {
+            width: 48% !important;
+        }
+    }
+}
+
+.wrap-info-product {
+    width: auto;
+    height: 15%;
+    padding: 0.5rem;
+
+    @include respond(phone) {
+        width: 33%;
+        padding: 0.2rem;
+    }
+}
+
+.-controller-btn {
+    width: 80dvw;
+    @include flex-row-space-between-center;
+    gap: 1rem;
+
+    div {
+        width: 50px;
+        height: 50px;
+        border-radius: 5px;
+        border: 1px solid rgba(68, 68, 68, 0.705);
+        @include flex-row-center-center;
+        cursor: pointer;
+        transition: 0.5s;
+    }
+
+    div:hover {
+        font-size: 1.2rem;
+        background-color: rgb(0, 0, 0);
+        color: white;
+        border: 1px solid white;
+    }
+}

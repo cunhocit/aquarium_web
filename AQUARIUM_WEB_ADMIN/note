@@ -1,0 +1,14 @@
+valid: viết xác thực tĩnh
+        kiểm tra trường rỗng, dữ liệu không đúng định dạng
+        set ngày sinh bị nhỏ quá, > số năm,...
+        => ko đụng đến csdl
+
+ko đụng đến csdl thì viết ở FE-ADMIN
+
+
+Ví dụ viết valid ở BE khi đụng đến csdl
+    vd: kiểm tra tồn tại của người dùng => email
+    request [user] => server - nhận => getData - check => response - FE
+
+
+mở command của main_layout

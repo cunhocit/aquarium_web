@@ -1,4 +1,6 @@
-@use '../abstracts/mixins' as *;
+@use '../abstracts/mixins/effect' as *;
+@use '../abstracts/mixins/respond' as *;
+@use '../abstracts/mixins/flex' as *;
 
 .count-down-style {
     font-size: 2.5rem;

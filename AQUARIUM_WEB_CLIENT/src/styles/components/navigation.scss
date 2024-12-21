@@ -1,5 +1,7 @@
-@use '../abstracts/mixins' as *;
-@use '../abstracts/variables' as *;
+@use '../abstracts/mixins/effect' as *;
+@use '../abstracts/mixins/respond' as *;
+@use '../abstracts/mixins/flex' as *;
+@use '../abstracts/mixins/sevcies' as *;
 
 .header {
     width: 100dvw;
@@ -12,20 +14,24 @@
     backdrop-filter: blur(5px);
 }
 
+.logo {
+    height: 100%;
+}
+
 .wrap-header-contents {
     width: 100%;
     height: 100%;
-    @include flex-space-between-row;
+    @include flex-row-space-between-center;
 }
 
 .nav-ul {
     height: inherit;
-    @include flex-center-row;
+    @include flex-row-center-center;
     align-items: center;
     gap: 2rem;
+    padding: 0 2rem;
 
     @include respond(tablet) {
-        font-size: $font-tablet;
         padding: 0.5rem;
         position: absolute;
         right: 0;
@@ -44,6 +50,7 @@
         
         #search-li {
             order: -1;
+            position: relative;
         }
         li{
             width: 100%;
@@ -54,12 +61,11 @@
     }
 
     @include respond(phone) {
-        font-size: $font-phone;
-        padding: 0.5rem 1rem;
+        padding: 2rem 1rem;
         position: absolute;
         top: -1000%;
         width: 100%;
-        height: auto;
+        height: 100dvh;
         max-height: 85dvh;
         overflow: auto;
         gap: 1rem;
@@ -107,10 +113,6 @@
     transition: .3s;
 }
 
-.nav-ul li:hover > .instruct svg {
-    transform: rotate(180deg);
-}
-
 .nav-ul li {
     height: 100%;
     position: relative;
@@ -132,13 +134,58 @@
 }
 
 #login-btn-li {
-    display: none;
+    align-items: center;
     cursor: pointer;
-    @include respond(tablet) {
-        display: inline-flex;
+
+    a {
+        border: 2px solid white;
+        border-radius: 50px;
+        height: 40px;
+        padding: 0.5rem 0.7rem;
+        background-color: white;
+        color: black;
+        font-weight: bold;
+        transition: 0.5s;
+        font-size: 0.9rem;
+        
+        &::before {
+            content: none;
+        }
+
+        @include respond(phone) {
+            @include underline-animation(white, 0.15rem);
+            background-color: transparent;
+            border: none;
+            color: white;
+            padding: 0;
+            height: auto;
+            font-weight: normal;
+        }
+        @include respond(tablet) {
+            @include underline-animation(white, 0.15rem);
+            background-color: transparent;
+            border: none;
+            color: white;
+            padding: 0;
+            height: auto;
+            font-weight: normal;
+        }
+
+        svg {
+            display: none;
+
+            @include respond(phone) {
+                display: flex;
+            }
+            @include respond(tablet) {
+                display: flex;
+            }
+        }
     }
-    @include respond(phone) {
-        display: inline-flex;
+
+    a:hover {
+        background-color: black;
+        color: white;
     }
 }
 
@@ -147,15 +194,65 @@
     align-items: center;
 }
 
+.-result-search {
+    background-color: rgba(255, 255, 255, 0.9);
+    position: absolute;
+    width: 100%;
+    height: auto;
+    max-height: 500px;
+    top: 75%;
+    z-index: 100;
+    border-radius: 20px;
+    overflow-y: scroll;
+    box-shadow: 0 15px 20px rgba(27, 27, 27, 0.5);
+    display: flex;
+    flex-direction: column;
+
+    @include respond(tablet) {
+        left: 0;
+        top: 100%;
+        height: 250px;
+    }
+
+    @include respond(phone) {
+        left: 0;
+        top: 100%;
+        height: 100dvh;
+    }
+
+    div {
+        padding: 0.5rem;
+        font-size: 1.2rem;
+        cursor: pointer;
+        transition: 0.3s;
+
+        a {
+            &::before {
+                content: none;
+            }
+            color: black;
+        }
+    }
+
+    div:hover {
+        background-color: rgb(4, 128, 0);
+    }
+
+    div:hover a {
+        color: white;
+    }
+}
+
 .search-bar {
     background-color: rgba(77, 77, 77, 0.716);
     border-radius: 20px;
-    @include flex-center-row;
+    @include flex-row-center-center;
     align-items: center;
     padding: 0.4rem 0.7rem;
     
     @include respond(phone) {
         width: 100%;
+        padding: 1rem;
     }
 }
 
@@ -177,7 +274,7 @@
 }
 
 .wrap-login-btn {
-    @include flex-center-row;
+    @include flex-row-center-center;
     align-items: center;
     background-color: transparent;
     padding: 1rem;
@@ -200,6 +297,10 @@
     font-weight: bold;
     border: 2px solid transparent;
     transition: .3s;
+
+    a {
+        color: black;
+    }
 }
 
 .login-btn:hover {
@@ -207,7 +308,7 @@
     background-color: rgba(27, 27, 27, 0.99);
 }
 
-.login-btn:hover p {
+.login-btn:hover a {
     color: white;
     @include text-trans(0.6s, 25px);
 }
@@ -222,22 +323,83 @@
     }
 
     @include respond(tablet) {
-        @include flex-center-colmun;
+        @include flex-column-center-center;
     }
     @include respond(phone) {
-        @include flex-center-colmun;
+        @include flex-column-center-center;
     }
 }
-
-
-
 
 .sidebar-ul li {
     padding: 1rem;
 }
 
+.wrap-account-menu-2 {
+    height: 100%;
+    justify-content: left;
+    align-items: center;
+    flex-direction: row;
+    gap: 0.5rem;
+    color: white;
+    cursor: pointer;
+
+    @include respond(tablet) {
+        flex-direction: row-reverse;
+    }
+    @include respond(phone) {
+        flex-direction: row-reverse;
+    }
+
+    div {
+        display: flex;
+        flex-direction: column;
+
+        a {
+            font-size: 0.7rem;
+            color: rgba(255, 255, 255, 0.532);
+        }
+    }
+    
+    img {
+        height: 35px;
+        width: 35px;
+        object-fit: cover;
+        border-radius: 100%;
+    }
+}
+
 .wrap-account-menu {
+    padding: 0 1rem;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+    color: white;
+    cursor: pointer;
     display: none;
+
+    @include respond(tablet) {
+        display: none !important;
+    }
+    @include respond(phone) {
+        display: none !important;
+    }
+
+    div {
+        display: flex;
+        flex-direction: column;
+
+        a {
+            font-size: 0.7rem;
+            color: rgba(255, 255, 255, 0.532);
+        }
+    }
+    
+    img {
+        height: 50px;
+        width: 50px;
+        border-radius: 100%;
+    }
 }
 
 .wrap-dropdown-account-menu {

@@ -1,0 +1,70 @@
+@use '../mixins/respond' as *;
+
+// UNDERLINE ANIMATION
+@mixin underline-animation($bg-color, $height) {
+    &::before {
+        content: "";
+        width: 0;
+        position: absolute;
+        top: 80%;
+        left: 0;
+        height: $height;
+        background-color: $bg-color;
+        transition: width .3s;
+
+        @include respond(tablet) {
+            height: 0.7*$height;
+            top: 100%;
+        }    
+        @include respond(phone) {
+            height: 0.7*$height;
+            top: 100%;
+        }
+    }
+    &:hover::before {
+        width: 100%;
+    }
+}
+
+// DROPDOWN MENU
+@mixin dropdown-menu {
+    position: absolute;
+    width: 210px;
+    top: 100%;
+    left: 0;
+    background-color: rgba(41, 41, 41,0.99);
+    display: none;
+    transition: .3s;
+    z-index: 1000;
+    li {
+        padding: 1rem;
+    }
+
+    @include respond(tablet){
+        width: auto;
+        position: relative;
+        li {
+            padding: 0.5rem;
+            width: auto;
+        }
+        li a{
+            font-size: 14px;
+        }
+    }
+    @include respond(phone){
+        width: auto;
+        position: relative;
+        li {
+            padding: 0.5rem;
+            width: auto;
+        }
+        li a{
+            font-size: 14px;
+        }
+    }
+}
+  
+// COMPONENTS
+@mixin button-base {
+    border: none;
+}

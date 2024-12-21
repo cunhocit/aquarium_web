@@ -1,0 +1,336 @@
+@use '../../abstracts/mixins/effect' as *;
+@use '../../abstracts/mixins/respond' as *;
+@use '../../abstracts/mixins/flex' as *;
+
+.wrap-search-page {
+    width: 100dvw;
+    height: 100dvh;
+    overflow-y: scroll;
+    background-color: rgb(230, 230, 230);
+}
+
+.cart-shopping-svg {
+    user-select: none;
+    cursor: grab;
+    width: 50px;
+    height: 50px;
+    background-color: green;
+    border-radius: 100%;
+    @include flex-row-center-center;
+    transition: 0.7s cubic-bezier(0.075, 0.82, 0.165, 1);
+    font-size: 0.8rem;
+    color: white;
+    z-index: 9999999;
+    top: 30%;
+    right: 20%;
+
+    svg {
+        font-size: 0.8rem;
+        color: white;
+        transition: 0.3s;
+    }
+}
+
+.cart-shopping-svg.hidden {
+    margin-top: -100%;
+}
+
+.cart-shopping-svg:hover {
+    color: green;
+    font-weight: bold;
+    svg {
+        display: none;
+    }
+}
+
+.cart-shopping-svg:hover {
+    border: 2px solid green;
+    background-color: white;
+}
+
+.wrap-header-search-product {
+    width: 100dvw;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.title-search-for-word {
+    width: 80dvw;
+    display: flex;
+    justify-content: left;
+    flex-direction: row;
+    align-items: center;
+    padding: 0.5rem;
+
+    @include respond(tablet) {
+        width: 90dvw;
+    }
+    @include respond(phone) {
+        width: 95dvw;
+    }
+}
+
+.title-search-for-word svg {
+    font-size: 1rem;
+}
+
+.title-search-for-word p {
+    text-align: left;
+    padding: 0.5rem;
+}
+
+.wrap-search-for-option {
+    background-color: white;
+    width: 80dvw;
+    padding: 1rem;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+    text-align: center;
+
+    @include respond(tablet) {
+        width: 90dvw;
+    }
+    @include respond(phone) {
+        width: 95dvw;
+    }
+
+    .-open-filter-btn {
+        padding: 0.5rem 1rem;
+        background-color: rgb(237, 237, 237);
+        cursor: pointer;
+        border-radius: 5px;
+        width: 150px;
+        text-align: center;
+        display: none;
+
+        @include respond(tablet) {
+            display: block;
+        }
+        @include respond(phone) {
+            display: block;
+        }
+    }
+
+    p {
+        width: 150px;
+        text-align: center;
+    }
+
+    .select-price {
+        cursor: pointer;
+        color: black;
+        width: 150px;
+        z-index: 100;
+    }
+
+    .option-search-box {
+        padding: 0.5rem 1rem;
+        background-color: rgb(237, 237, 237);
+        cursor: pointer;
+        border-radius: 5px;
+        width: 150px;
+        display: flex;
+        align-items: center;
+    }
+}
+
+.option-search-box p {
+    color: rgb(0, 0, 0);
+}
+
+.choose-price {
+    @include flex-row-center-center;
+    border-radius: 5px;
+    gap: 1rem;
+    cursor: pointer;
+
+    select {
+        padding: 0.5rem;
+        border-radius: 5px;
+        outline: none;
+        cursor: pointer;
+        border: none;
+        background-color: rgb(237, 237, 237);
+    }
+}
+
+.wrap-option-right-search-for-option {
+    align-items: center;
+    gap: 0.5rem;
+    height: 100%;
+    width: 150px;
+    display: flex;
+    justify-content: center;
+
+    .pageCount {
+        width: 2rem;
+        height: 2rem;
+        @include flex-row-center-center;
+        align-items: center;
+    }
+    
+    .prevPage, .nextPage {
+        width: 2rem;
+        height: 2rem;
+        @include flex-row-center-center;
+        align-items: center;
+        cursor: pointer;
+        border-radius: 5px;
+        border: 2px solid rgb(190, 190, 190);
+    }
+
+    .prevPage:hover, .nextPage:hover {
+        background-color: white;
+        color: rgb(0, 134, 31);
+        border: 2px solid rgb(0, 134, 31);
+    }
+}
+
+.wrap-show-product {
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    align-items: start;
+    margin-bottom: 2rem;
+    padding: 0.5rem;
+    width: 100dvw;
+    height: 100dvh;
+
+    .-show-product-container {
+        width: 80dvw;
+        height: 100%;
+        display: flex;
+
+        @include respond(tablet) {
+            width: 90dvw;
+        }
+        @include respond(phone) {
+            width: 95dvw;
+        }
+    }
+
+}
+
+.wrap-list-product-p {
+    min-width: 80%;
+    max-width: 85%;
+    display: flex;
+    align-items: start;
+
+    @include respond(tablet) {
+        max-width: 100%;
+    }
+    @include respond(phone) {
+        max-width: 100%;
+    }
+}
+
+.header-search-bar {
+    width: 80dvw;
+    @include flex-row-space-around-center;
+    align-items: center;
+    padding: 1rem;
+    border-radius: 5px;
+    background-color: white;
+    margin-top: 1rem;
+    gap: 1.5rem;
+    position: relative;
+
+    @include respond(tablet) {
+        width: 90dvw;
+    }
+    @include respond(phone) {
+        width: 95dvw;
+    }
+
+    .-w-result {
+        width: 60%;
+        background-color: rgba(255, 255, 255, 0.973);
+        height: 500px;
+        position: absolute;
+        top: 100%;
+        z-index: 9999;
+        box-shadow: 0 10px 20px rgba(41, 41, 41, 0.2);
+        border: 1px solid rgba(128, 128, 128, 0.092);
+        border-radius: 5px;
+        display: flex;
+        flex-direction: column;
+        align-items: start;
+        justify-content: start;
+        overflow: auto;
+
+        div {
+            transition: 0.4s;
+            width: 100%;
+            
+            a {
+                width: 100%;
+                padding: 0.8rem 2rem;
+                color: black;
+            }
+        }
+
+        div:hover {
+            background-color: rgba(17, 147, 0, 0.126);
+        }
+    }
+
+    .-svg-i {
+        @include respond(phone) {
+            display: none;
+        }
+    }
+
+    div {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        gap: 1rem;
+    }
+
+    .-svg-glass {
+        background-color: white;
+        padding: 0.5rem;
+        border-radius: 100%;
+        border: 2px solid transparent;
+        transition: 0.5s;
+    }
+
+    .-svg-glass:hover {
+        color: white;
+        background-color: rgba(41, 41, 41, 0.673);
+    }
+
+    p {
+        border: 1px solid white;
+        padding: 0.5rem;
+        border-radius: 3px;
+        @include respond(phone) {
+            display: none;
+        }
+    }
+    
+    input {
+        outline: none;
+        background-color: rgb(255, 255, 255);
+        border: 1px solid rgba(0, 53, 17, 0.482);
+        padding: 0.6rem;
+        border-radius: 3px;
+        width: 50%;
+        
+        @include respond(tablet) {
+            width: 50%;
+        }
+        @include respond(phone) {
+            width: 100%;
+        }
+    }
+}

@@ -1,34 +1,23 @@
+/* eslint-disable no-unreachable */
 import { useState } from "react";
-import Dashboard from "../layouts/dashboard/dashboard";
-import Orders from "../layouts/orders/orders";
-import Products from "../layouts/products/products";
-import Settings from "../layouts/settings/settings";
-import Custumers from "../layouts/customers/custumers";
+import AdminInfo from "../layouts/settings/admin_info";
+import ChangePassword from "../layouts/settings/change_password";
 
-export default function usePageSwitch() {
-    const [activePage, setActivePage] = useState('dashboard');
+export function useSettingSwitch() {
+    const [activeSpace, setActiveSpace] = useState('admin_info');
 
-    const renderPage = () => {
-        switch (activePage) {
-            case 'dashboard':
-                return <Dashboard/>;
+    const renderSpace = (props) => {
+        switch (activeSpace) {
+            case 'change_password':
+                return <ChangePassword {...props} setActivePage={setActiveSpace}/>;
 
-            case 'orders':
-                return <Orders/>;
-
-            case 'products':
-                return <Products/>;
-
-            case 'settings':
-                return <Settings/>;
-
-            case 'customers':
-                return <Custumers/>;
+            case 'admin_info':
+                return <AdminInfo {...props}/>;
 
             default:
-                return <Dashboard/>
+                return <AdminInfo {...props} />;
         }
     }
 
-    return { setActivePage, renderPage };
+    return { setActiveSpace, renderSpace };
 }

@@ -29,6 +29,14 @@
     // settings
     @use './layouts/settings/settings.scss';
 
+    // post
+    @use './layouts/post/post.scss';
+    
+    // sale
+    @use './layouts/sale/sale.scss';
+
+    // voucher
+    @use './layouts/voucher/voucher.scss';
 
 // VENDORS
 @use './vendor/vendor';

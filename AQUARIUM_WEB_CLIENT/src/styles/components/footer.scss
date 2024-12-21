@@ -1,5 +1,7 @@
-@use '../abstracts/variables' as *;
-@use '../abstracts/mixins' as *;
+@use '../abstracts/mixins/flex' as *;
+@use '../abstracts/mixins/respond' as *;
+@use '../abstracts/mixins/effect' as *;
+@use '../abstracts/mixins/sevcies' as *;
 
 .footer {
     width: 100dvw;

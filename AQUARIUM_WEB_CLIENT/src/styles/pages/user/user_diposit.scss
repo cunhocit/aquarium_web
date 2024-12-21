@@ -1,0 +1,38 @@
+@use '../../abstracts/mixins/respond' as *;
+
+.wrap-diposit {
+    display: flex;
+    padding: 0.5rem;
+    gap: 1rem;
+    width: 100%;
+
+    @include respond(phone) {
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+
+        img {
+            width: 50%;
+        }
+    }
+
+    div {
+        width: 100%;
+        padding: 0.5rem 1rem;
+        background-color: rgb(225, 239, 251);
+        border-radius: 5px;
+        gap: 0.5rem;
+        display: flex;
+        flex-direction: column;
+
+        h4 {
+            font-weight: normal;
+            font-size: 1.2rem;
+        }
+
+        p {
+            padding: 0 0.5rem;
+            font-size: 0.9rem;
+        }
+    }
+}

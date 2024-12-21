@@ -1,42 +1,35 @@
-import LineChartRevenue, { LineChartNewCustomers } from "../../components/charts/line_chart";
-import PieChartPrd from "../../components/charts/pie_chart";
-import PieChartWithPaddingAngle from "../../components/charts/pie_chart_padding_angle";
+/* eslint-disable no-unused-vars */
+/* eslint-disable react/prop-types */
 import TableTopPrd from "./table_prd";
-import TableTopUser from "./table_topuse";
+import TableOrders from "./table_order";
+import { LineChartNewCustomers } from "../../components/charts/lineChartNewCus";
+import LineChartRevenue from "../../components/charts/lineChartRev";
+import PieChartTopSelling from "../../components/charts/pieChartTopSelling";
+import PieChartPrdStruct from "../../components/charts/rieChartPrdStruct";
 
-export default function ChartData() {
+export default function ChartData({data}) {
+    const revenues = data.revenues;
+    const customers = data.customers;
+    const categories = data.categories;
+    const products = data.products;
+    
     return(
         <>
-        <div className="wrap-charts">
-            <div className="wrap-revenue-chart">
-                <div className="revenue-chart-header">
-                    <h3>Doanh thu</h3>
-                    <select className="selectValueLineChart" name="" id="">
-                        <option value="">Tuần</option>
-                        <option value="">Tháng</option>
-                    </select>
-                </div>
-                <LineChartRevenue/>
-            </div>
+            <div className="wrap-charts">
 
-            <div className="wrap-struc-prd">
-                <h3>Cơ cấu sản phẩm</h3>
-                <div className="wrap-pie-chart">
-                    <PieChartPrd/>
-                </div>
-            </div>
+                <LineChartRevenue revenues={revenues}/>
 
-            <div className="wrap-top-categories">
-                <h3>Danh mục bán chạy</h3>
-                <div className="wrap-pie-pad-angle">
-                    <PieChartWithPaddingAngle/>
-                </div>
-            </div>
+                <LineChartNewCustomers customers={customers}/>
 
-            <TableTopPrd/>
-            <LineChartNewCustomers/>
-            <TableTopUser/>
-        </div>
+                <PieChartTopSelling categories={categories} revenues={revenues} />
+
+                <PieChartPrdStruct categories={categories} />
+
+                <TableTopPrd products={products} revenues={revenues} />
+
+                <TableOrders data={data} />
+
+            </div>
         </>
     )
 }

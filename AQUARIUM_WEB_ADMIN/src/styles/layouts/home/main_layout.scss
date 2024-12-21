@@ -12,7 +12,8 @@
 
 .wrap-work-space {
     width: 100dvw;
-    height: auto;
+    height: 100dvh;
+    overflow-y: auto;
     display: flex;
     justify-content: start;
     align-items: center;

@@ -1,78 +1,116 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable react/prop-types */
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faHome, faBoxes, faShoppingCart, faUsers, faArrowLeft, faGear } from '@fortawesome/free-solid-svg-icons';
-import { useState } from 'react';
+import { faHome, faBoxes, faShoppingCart, faUsers, faArrowLeft, faGear, faCoffee, faLeaf, faBook, faTag, faTicket } from '@fortawesome/free-solid-svg-icons';
+import { Link } from 'react-router-dom';
+import { useEffect, useRef } from 'react';
 
-export default function Sidebar({isOpen, hidden, setActivePage}) {
-    const [selectedItem, setSelectedItem] = useState('dashboard');
+export default function Sidebar({openSB, handleOpenSB}) {
+    const sidebarRef = useRef(null);
 
-    const handleItemClick = (item) => {
-        setSelectedItem(item);
-        setActivePage(item);
+    const handleClickOutside = (e) => {
+        if (sidebarRef.current && !sidebarRef.current.contains(e.target)) {
+            handleOpenSB();
+        }
     }
+
+    useEffect(() => {
+        if (openSB) {
+            document.addEventListener("mousedown", handleClickOutside);
+        }else {
+            document.removeEventListener("mousedown", handleClickOutside);
+        }
+
+        return () => {
+            document.removeEventListener("mousedown", handleClickOutside);
+        };
+    }, [openSB])
+
     return (
         <>
-            <div className={`wrap-sidebar ${isOpen ? 'open' : ''}`}>
+            <div className={`wrap-sidebar ${openSB ? 'open' : ''}`} ref={sidebarRef}>
 
                 <div className="logo">
-                    <img src="public/logo-black.png" alt="" />
+                    <FontAwesomeIcon icon={faLeaf} />
                 </div>
 
-                <div className={`hideSidebar ${isOpen ? 'openSb' : ''}`} >
-                    <FontAwesomeIcon icon={faArrowLeft} onClick={hidden}/>
+                <div className={`hideSidebar ${openSB ? 'openSb' : ''}`} onClick={handleOpenSB} >
+                    <FontAwesomeIcon icon={faArrowLeft}/>
                 </div>
 
                 <div className="wrap-action-sidebar">
-                    <div className={`sidebar-item ${selectedItem === 'dashboard' ? 'active' : ''}`}
-                        onClick={() => handleItemClick('dashboard')}
-                    >
-                        <div className='-item'>
-                            <FontAwesomeIcon icon={faHome} />
-                            <p>Dashboard</p>
-                        </div>
-                    </div>
 
-                    <div>
-                        <div
-                            className={`sidebar-item ${selectedItem === 'products' ? 'active' : ''}`}
-                            onClick={() => handleItemClick('products')}
-                        >
-                            <div className="-item">
-                                <FontAwesomeIcon icon={faBoxes} />
-                                <p>Sản phẩm</p>
+                    <Link to={'/'}>
+                        <div className='sidebar-item'>
+                            <div className='-item'>
+                                <FontAwesomeIcon icon={faHome} />
+                                <p>Trang chủ</p>
                             </div>
                         </div>
-                    </div>
+                    </Link>
 
-                    <div
-                        className={`sidebar-item ${selectedItem === 'orders' ? 'active' : ''}`}
-                        onClick={() => handleItemClick('orders')}
-                    >
-                        <div className="-item">
-                            <FontAwesomeIcon icon={faShoppingCart} />
-                            <p>Đơn hàng</p>
+                    <Link to={'/products'}>
+                        <div className='sidebar-item' >
+                            <div className="-item">
+                                <FontAwesomeIcon icon={faBoxes} /><p>Sản phẩm</p>
+                            </div>
                         </div>
-                    </div>
+                    </Link>
 
-                    <div
-                        className={`sidebar-item ${selectedItem === 'customers' ? 'active' : ''}`}
-                        onClick={() => handleItemClick('customers')}
-                    >
-                        <div className="-item">
-                            <FontAwesomeIcon icon={faUsers} />
-                            <p>Khách hàng</p>
+                    <Link to={'/orders'}>
+                        <div className='sidebar-item' >
+                            <div className="-item">
+                                <FontAwesomeIcon icon={faShoppingCart} />
+                                <p>Đơn hàng</p>
+                            </div>
                         </div>
-                    </div>
+                    </Link>
+
+                    <Link to={'/customer'}>
+                        <div className='sidebar-item' >
+                            <div className="-item">
+                                <FontAwesomeIcon icon={faUsers} />
+                                <p>Khách hàng</p>
+                            </div>
+                        </div>
+                    </Link>
+
+                    <Link to={'/sale'}>
+                        <div className='sidebar-item' >
+                            <div className="-item">
+                                <FontAwesomeIcon icon={faTag} />
+                                <p>Khuyến mãi</p>
+                            </div>
+                        </div>
+                    </Link>
+
+                    <Link to={'/voucher'}>
+                        <div className='sidebar-item' >
+                            <div className="-item">
+                                <FontAwesomeIcon icon={faTicket} />
+                                <p>Mã giảm giá</p>
+                            </div>
+                        </div>
+                    </Link>
+
+                    <Link to={'/post'}>
+                        <div className='sidebar-item' >
+                            <div className="-item">
+                                <FontAwesomeIcon icon={faBook} />
+                                <p>Bài viết</p>
+                            </div>
+                        </div>
+                    </Link>
                     
-                    <div
-                        className={`sidebar-item ${selectedItem === 'settings' ? 'active' : ''}`}
-                        onClick={() => handleItemClick('settings')}
-                    >
-                        <div className="-item">
-                            <FontAwesomeIcon icon={faGear} />
-                            <p>Cài đặt</p>
+                    <Link to={'/settings'}>
+                        <div className='sidebar-item' >
+                            <div className="-item">
+                                <FontAwesomeIcon icon={faGear} />
+                                <p>Cài đặt</p>
+                            </div>
                         </div>
-                    </div>
+                    </Link>
+
                 </div>
             </div>
         </>

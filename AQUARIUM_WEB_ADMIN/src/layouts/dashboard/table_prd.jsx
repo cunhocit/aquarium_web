@@ -1,100 +1,112 @@
+/* eslint-disable no-unused-vars */
+/* eslint-disable react/prop-types */
 import { useState } from 'react';
 import DataTable from 'react-data-table-component';
 
-const data = [
-    { id: 'C001', name: 'Cà phê Arabica', sold: 50, action: '[Xem chi tiết]' },
-    { id: 'C002', name: 'Cà phê Robusta', sold: 30, action: '[Xem chi tiết]'  },
-    { id: 'C003', name: 'Cà phê Espresso', sold: 100, action: '[Xem chi tiết]'  },
-    { id: 'C004', name: 'Cà phê Latte', sold: 70, action: '[Xem chi tiết]'  },
-    { id: 'C005', name: 'Cà phê Cappuccino', sold: 40, action: '[Xem chi tiết]'  },
-    { id: 'C006', name: 'Cà phê Mocha', sold: 200, action: '[Xem chi tiết]'  },
-    { id: 'C007', name: 'Cà phê Cold Brew', sold: 150, action: '[Xem chi tiết]'  },
-    { id: 'C008', name: 'Cà phê Macchiato', sold: 90, action: '[Xem chi tiết]'  },
-    { id: 'C009', name: 'Cà phê Moka Pot', sold: 110, action: '[Xem chi tiết]'  },
-    { id: 'C010', name: 'Cà phê Turkish', sold: 65, action: '[Xem chi tiết]'  },
-  ];
+const fontStyle = {
+  fontSize: '0.9rem'
+};
 
-// Các cột cho bảng
 const columns = [
   {
-    name: <span
-            style={{
-                fontSize: '0.9rem'
-            }}
-        >
-            Mã
-        </span>,
+    name: <span style={fontStyle}>Mã sản phẩm</span>,
     selector: row => row.id,
     sortable: true,
   },
   {
-    name: <span
-            style={{
-                fontSize: '0.9rem'
-            }}
-        >
-            Tên sản phẩm
-        </span>,
+    name: <span style={fontStyle}>Tên sản phẩm</span>,
     selector: row => row.name,
     sortable: true,
   },
   {
-    name: <span
-            style={{
-                fontSize: '0.9rem'
-            }}
-        >
-            Số lượng bán
-        </span>,
-    selector: row => row.sold,
+    name: <span style={fontStyle}>Danh mục</span>,
+    selector: row => row.category,
     sortable: true,
   },
   {
-    name: <span
-            style={{
-                fontSize: '0.9rem'
-            }}
-        >
-            Hành động
-        </span>,
-    selector: row => row.action,
+    name: <span style={fontStyle}>Số lượng bán</span>,
+    selector: row => row.quantity,
     sortable: true,
+    sortField: 'quantity',
+    id: 'quantity'
   },
+  {
+    name: <span style={fontStyle}>Doanh thu</span>,
+    selector: row => new Intl.NumberFormat('vi-VN').format(row.revenue),
+    sortable: true,
+  }
 ];
 
-const Table = () => {
+
+const filtelData = (products, revenues) => {
+  let count = 0;
+  let data = [];
+
+  revenues.sort((a, b) => b.quantity - a.quantity);
+  revenues.map(rev => {
+    if (count<=5) {
+      data.push({
+        id: null,
+        category: rev.category,
+        name: rev.product,
+        quantity: 0,
+        revenue: 0,
+      })
+    }
+    count++;
+  });
+
+  revenues.forEach(rev => {
+    data.forEach(d => {
+      if (d.name === rev.product) {
+        d.quantity += rev.quantity; 
+        d.revenue += rev.revenue;    
+      }
+    });
+  });
+
+  products.forEach(e => {
+    data.forEach(d => {
+      if (d.name === e.name) {
+        d.id = e.id;
+      }
+    });
+  });
+  
+  return data;
+}
+
+const Table = ({products, revenues}) => {
   const [search, setSearch] = useState('');
 
-  // Hàm xử lý tìm kiếm
+  let data = filtelData(products, revenues);
+
   const handleFilter = (event) => {
     setSearch(event.target.value);
   };
 
-  // Lọc dữ liệu dựa trên tìm kiếm
   const filteredData = data.filter(item =>
-    item.name.toLowerCase().includes(search.toLowerCase())
+    item.name.toLowerCase().includes(search.toLowerCase()) ||
+    item.category.toLowerCase().includes(search.toLowerCase())
   );
 
   return (
     <div className="wrap-top-prod">
       <div className='-header-top-prd' style={{
-          borderBottom: "1px solid gray",
           borderRadius: "5px 5px 0 0"
         }}>
-        <h3>Top sản phẩm bán chạy</h3>
+        <h3>Top 5 sản phẩm bán chạy</h3>
         
         <input
             type="text"
-            placeholder="Tìm kiếm sản phẩm"
+            placeholder="Tìm kiếm"
             value={search}
             onChange={handleFilter}
             style={{ 
                 marginRight: '10px',
                 padding: '10px', 
-                width: '250px', 
-                borderRight: 'none',
-                borderLeft: 'none',
-                borderTop: 'none',
+                width: '250px',
+                border: "1px solid rgba(175, 175, 175, 0.5)",
                 background: 'rgba(251, 251, 251, 0.971)',
                 outline: 'none',
                 borderRadius: "5px"
@@ -102,17 +114,24 @@ const Table = () => {
         />
       </div>
 
-      {/* Bảng DataTable */}
-      <div style={{ maxHeight: '330px', overflowY: 'auto' }}>
+      <div style={{
+        maxHeight: '100%',
+        overflowY: 'auto',
+        border: "1px solid rgba(175, 175, 175, 0.5)",
+        borderRadius: "5px"
+      }}>
         <DataTable
           columns={columns}
           data={filteredData}
           fixedHeader
-          fixedHeaderScrollHeight="330px"  // Giới hạn chiều cao cho phần thân cuộn
+          fixedHeaderScrollHeight="320px"  
           responsive
           highlightOnHover
           striped
-          pagination={false}  // Bỏ phân trang
+          defaultSortAsc={false}
+          defaultSortFieldId="quantity"
+          pagination={false} 
+          style={{cursor: 'pointer'}}
         />
       </div>
     </div>

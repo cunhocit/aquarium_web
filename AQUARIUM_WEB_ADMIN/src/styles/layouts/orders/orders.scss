@@ -1,3 +1,5 @@
+@use '../../abstracts/mixins/respond' as *;
+
 .wrap-orders {
     width: 95%;
     height: auto;
@@ -13,5 +15,5 @@
 .gr-btn {
     display: flex;
     flex-direction: row;
-    gap: 1rem;
+    gap: 0.5rem;
 }
