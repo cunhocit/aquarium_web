@@ -24,9 +24,7 @@ import { CustomerOrderHistory } from './pages/customer/customer_history';
 import Sale from './pages/sale/sale';
 import Voucher from './pages/voucher/voucher';
 
-// localStorage.removeItem('jwt_token')
-// localStorage.removeItem('id_admin')
-// localStorage.removeItem('exp')
+// localStorage.clear()
 
 function App() {
   useTokenExpiration();

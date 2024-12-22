@@ -35,6 +35,8 @@ public class OrderController {
     CustomerRepository customerRepository;
     @Autowired
     TransportRepository transportRepository;
+    @Autowired
+    RevenueRepository revenueRepository;
 
     @GetMapping("/get_order_by_prd_name")
     public ResponseEntity<?> getOrdersByPrdName(@RequestParam String name) {
@@ -151,6 +153,18 @@ public class OrderController {
             order_.setStatus(order.getStatus());
             order_.setUpdated_at(Timestamp.valueOf(LocalDateTime.now()));
 
+            if (order.getStatus().equals("Hoàn thành")) {
+                Revenue revenue = Revenue.builder()
+                .category(product.getCategory())
+                .product(product.getName())
+                .quantity(product.getQuantity())
+                .revenue(calPrice(product))
+                .created_at(Timestamp.valueOf(LocalDateTime.now()))
+                .updated_at(Timestamp.valueOf(LocalDateTime.now()))
+                .build();
+                revenueRepository.save(revenue);
+            }
+
             orderRepository.save(order_);
 
             response.put("message", "Cập nhật thành công");
@@ -163,7 +177,7 @@ public class OrderController {
     }
 
     @PostMapping("/payment")
-    public ResponseEntity<?> Payment(@RequestBody PaymentDTO paymentDTO ) {
+    public ResponseEntity<?> Payment(@RequestBody PaymentDTO paymentDTO) {
         Map<String, Object> response = new HashMap<>();
         try {
             String id = CryptAES.getInstance().decrypt(paymentDTO.getCus_id());
@@ -183,7 +197,7 @@ public class OrderController {
             for (Product product : paymentDTO.getListProduct()) {
                 Product product_ = productRepository.findByName(product.getName());
                 if (product_.getQuantity() < product.getQuantity()) {
-                    response.put("message", "Hiện tại số lượng của " + product.getName() + " chỉ còn " + product.getQuantity());
+                    response.put("message", "Sản phẩm đã hết hàng");
                     return ResponseEntity.status(HttpStatus.FORBIDDEN).body(response);
                 }
 
@@ -203,13 +217,23 @@ public class OrderController {
                         .transport(paymentDTO.getTransport())
                         .build();
 
+//                Revenue revenue = Revenue.builder()
+//                        .category(product.getCategory())
+//                        .product(product.getName())
+//                        .quantity(product.getQuantity())
+//                        .revenue(calPrice(product))
+//                        .created_at(Timestamp.valueOf(LocalDateTime.now()))
+//                        .updated_at(Timestamp.valueOf(LocalDateTime.now()))
+//                        .build();
+
                 Product product1 = productRepository.findByName(product.getName());
 
-                int quantity = product1.getQuantity() + product.getQuantity();
+                int quantity = product1.getQuantity() - product.getQuantity();
                 product1.setQuantity(quantity);
 
                 productRepository.save(product1);
                 orderRepository.save(order);
+//                revenueRepository.save(revenue);
             }
 
             int balance_ = customer.getBalance() - paymentDTO.getPrice();
