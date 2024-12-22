@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { validUpdatePrd } from "../valid/prodValid";
+import { validCategory } from "../valid/prodValid";
 
 export const getAllCtgAPI = async () => {
     try {
@@ -25,7 +25,7 @@ export const getAllCtgAPI = async () => {
   export const addCtgAPI = async (category) => {
     try {
       const data = [category];
-      if(validUpdatePrd(data)) {
+      if(validCategory(data)) {
         const jwt_token = localStorage.getItem("jwt_token");
         if (jwt_token) {
           const response = await axios.post("http://localhost:8080/api/add_category",
