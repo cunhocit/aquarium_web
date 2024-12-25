@@ -114,6 +114,9 @@ public class CustomerAuthController {
                 return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(response);
             }
 
+            customer_.setStatus("online");
+            customerRepository.save(customer_);
+
             String jwtToken = jwtService.generateTokenCustomer(customer_);
             Date exp = jwtService.extractExpiration(jwtToken);
 

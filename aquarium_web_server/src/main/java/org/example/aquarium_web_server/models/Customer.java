@@ -30,6 +30,7 @@ public class Customer {
     String image;
     Integer verify = 0;
     String verify_at;
+    private String  status;
 
     @Column(name = "voucher_code")
     String voucherCodes;

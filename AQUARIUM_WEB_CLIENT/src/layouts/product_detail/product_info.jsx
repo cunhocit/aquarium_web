@@ -51,15 +51,6 @@ export const ProducInfo = ({product, data2}) => {
                         <FontAwesomeIcon icon={faTags} />
                         <p>Giảm giá: {product?.discount_percentage ? (product?.discount_percentage + '%') : 'Không có'}</p>
                     </div>
-                    
-                    <div className="-detail-quantity">
-                        <p>Số lượng: </p>
-                        <div>
-                            <p><FontAwesomeIcon icon={faAdd} onClick={upQty} /></p>
-                            <p>{quantity}</p>
-                            <p><FontAwesomeIcon icon={faSubtract} onClick={lowQty}/></p>
-                        </div>
-                    </div>
 
                     <div className="-detail-price">
                         {product?.discount_percentage ? <h2><s>{product?.price.toLocaleString('vi-VN')} đ</s></h2> : ''}

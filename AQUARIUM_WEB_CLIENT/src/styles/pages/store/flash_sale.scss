@@ -70,6 +70,8 @@
 }
 
 .box-product {
+    overflow: hidden;
+    border-radius: 15px !important;
     cursor: pointer;
     border: 3px solid rgba(128, 128, 128, 0.526);
     @include flex-column-center-center;

@@ -58,6 +58,7 @@
         display: flex;
         gap: 0.5rem;
         flex-direction: column;
+        overflow: auto;
 
         .voucher-item {
             border: 1px solid rgba(128, 128, 128, 0.496);

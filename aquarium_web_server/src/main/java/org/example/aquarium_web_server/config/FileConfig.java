@@ -10,7 +10,7 @@ public class FileConfig {
     @Bean
     public MultipartConfigElement multipartConfigElement() {
         MultipartConfigFactory factory = new MultipartConfigFactory();
-        factory.setLocation("D:/workspace/project/aquarium_web/aquarium_web_server/src/main/resources/static");
+        factory.setLocation("D:/workspace/web/aquarium_web/aquarium_web_server/src/main/resources/static");
         return factory.createMultipartConfig();
     }
 }

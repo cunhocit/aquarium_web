@@ -169,6 +169,11 @@ public class AdminController {
 
             file.transferTo(new File(uploadDir + fileName));
 
+            if (!new File(uploadDir + fileName).exists()) {
+                response.put("message", "Có lỗi xảy ra");
+                return ResponseEntity.badRequest().body(response);
+            }
+
             admin_.setImage(fileName);
             adminRepository.save(admin_);
 

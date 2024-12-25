@@ -53,7 +53,7 @@
 .tips-ul li {
     @include flex-column-space-between-center;
     width: 25%;
-    height: 50dvh;
+    max-height: 500px;
     gap: 1.5rem;
 
     @include respond(phone) {

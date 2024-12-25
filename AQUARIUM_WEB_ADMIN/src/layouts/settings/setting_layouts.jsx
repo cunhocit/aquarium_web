@@ -50,8 +50,10 @@ export default function SettingsLayout() {
                 file: selectedFile
             }).then(
                 data => {
+                    console.log(data.message);
+                    
                     if (data.message) {
-                        window.location.reload();
+                        fetchData();
                     }
                 }
             ).catch(error => {

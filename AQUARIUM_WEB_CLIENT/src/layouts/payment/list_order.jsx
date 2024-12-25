@@ -12,13 +12,14 @@ import { Payment_API } from "../../app/api/payment_api";
 // localStorage.clear()
 
 export const ListOrder = () => {
-    const {data, fetchData, isLoading, customer, fetchData2, fetchData3, vouchers, fetchData4, transports} = useGetProductByListId();
+    const {data, fetchData, isLoading, customer, fetchData2, fetchData3, vouchers: vouchers_2, fetchData4, transports} = useGetProductByListId();
     const [listProducts, setListProducts] = useState([]);
-    const [cusVouchers, setCusVouchers] = useState(); // voucher code của customer
+    const [cusVouchers, setCusVouchers] = useState();
     const {cart, updateCart, deleteCart} = useCart();
     const [totalPrice, setTotalPrice] = useState();
     const [selectedProducts, setSelectedProducts] = useState([]);
-    // const [voucherUse, setVoucherUse] = useState([]);
+    const [voucherUse, setVoucherUse] = useState([]);
+    const [vouchers, setVouchers] = useState([]);
     const [selectAll, setSelectAll] = useState(false);
     const [selectedTransport, setSelectedTransport] = useState();
     const [selectPayMethod, setSelectPayMethod] = useState('Thanh toán khi nhận hàng');
@@ -29,7 +30,8 @@ export const ListOrder = () => {
         setCusVouchers(vouchers_?.filter(p => p != 'null'));
         const first_transport = transports?.[0];
         setSelectedTransport(first_transport);
-    }, [data, customer, vouchers, transports]);
+        setVouchers(vouchers_2);
+    }, [data, customer, vouchers_2, transports]);
 
     useEffect(() => {
         let total = 0;
@@ -49,10 +51,6 @@ export const ListOrder = () => {
         setTotalPrice(total);
     }, [selectedProducts, selectedTransport]);
 
-    useEffect(() => {
-
-    }, [selectedTransport]);
-
     const handleQuantityChange = (id, quantity) => {
         const updatedProducts = listProducts.map(product => 
             product.id === id ? {...product, quantity: Math.max(1, quantity)} : product
@@ -60,60 +58,25 @@ export const ListOrder = () => {
         setListProducts(updatedProducts);
     };
 
-    // useEffect(() => {
-    //     console.log(voucherUse);
-    // }, [voucherUse])
+    useEffect(() => {
+        if (voucherUse?.length > 0) {
+            setCusVouchers(prev =>
+                prev.filter(voucherCode => !voucherUse.some(voucher => voucher.voucherCode === voucherCode))
+            );
+        }
+    }, [voucherUse]);
 
     const handleUseVoucher = (e, product) => {
-        if (!selectedProducts?.some(sp => sp.id === product.id)) {
-            alert('Bạn chưa chọn sản phẩm!');
-            return;
-        }
-    
         const selectedVoucher = e.target.value;
+
         const voucher = vouchers?.find(v => v.voucherCode === selectedVoucher);
-    
-        // Kiểm tra nếu voucher đã được sử dụng cho sản phẩm khác
-        // const isVoucherUsedForOtherProduct = voucherUse.some(v => v.voucherCode === selectedVoucher && v.product !== product.id);
-        
-        // if (isVoucherUsedForOtherProduct) {
-        //     alert('Voucher đã được sử dụng cho sản phẩm khác!');
-        //     return;
-        // }
-    
+
         if (voucher) {
             // Cập nhật voucher sử dụng cho sản phẩm hiện tại
-            // setVoucherUse(prev => [...prev, { product: product.id, voucherCode: selectedVoucher }]);
-    
-            listProducts?.map(p => {
-                if (p.id === product.id) {
-                    let newPrice = p?.price;
-    
-                    if (p?.discount_percentage) {
-                        newPrice = p?.price * (1 - p.discount_percentage / 100);
-                    }
-    
-                    if (voucher.type_code === 'Giảm theo số tiền') {
-                        newPrice = Math.max(0, newPrice - voucher.discount_percentage); // Đảm bảo tổng tiền không âm
-                    } else if (voucher.type_code === 'Giảm theo phần trăm') {
-                        newPrice = newPrice * (1 - voucher.discount_percentage / 100);
-                    }
-    
-                    setTotalPrice(newPrice);
-                }
-            });
+            setVoucherUse(prev => [...prev, { product: product.id, voucherCode: selectedVoucher }]);
         } else {
             // Reset tổng tiền nếu không chọn voucher
-            let total = 0;
-            selectedProducts?.forEach(product => {
-                const discount = product?.discount_percentage
-                    ? (product.discount_percentage / 100) * product.price
-                    : 0;
-                const priceAfterDiscount = product.price - discount;
-                total += priceAfterDiscount * (product.quantity || 1);
-            });
-            total += selectedTransport?.price;
-            setTotalPrice(total);
+            fetchData3();
         }
     };
 
@@ -200,9 +163,9 @@ export const ListOrder = () => {
                                             {/* <label>
                                                 <FontAwesomeIcon icon={faTag} />
                                                 <select name="voucher" id="voucher" onChange={e => handleUseVoucher(e, product)}>
-                                                    <option value="0">Mã giảm giá</option>
+                                                    <option value="Mã giảm giá">Mã giảm giá</option>
                                                     {cusVouchers?.map(p => (
-                                                        <option key={p} value={p}>
+                                                        <option key={p.voucherCode} value={p}>
                                                             {'-' + vouchers?.find(v => v.voucherCode === p)?.discount_percentage.toLocaleString() + 
                                                             (vouchers?.find(v => v.voucherCode === p)?.type_code === 'Giảm theo số tiền' ? 'đ' : '%')}
                                                         </option>

@@ -63,6 +63,13 @@ export const ContactLayout = () => {
             (response) => {
               setStatus('Email sent successfully!');
               console.log(response);
+              setName('');
+              setEmail('');
+              setMessage('');
+              setSubject('');
+              if (response.status === 200) {
+                alert('Gửi thư thành công!');
+              }
             },
             (error) => {
               setStatus('Failed to send email');

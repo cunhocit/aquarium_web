@@ -22,21 +22,21 @@ export const ShowProductList = ({data}) => {
         setProducts(sort_data);
     }, [data]);
 
-    useEffect(() => {
-        const handleResize = () => {
-            if (window.innerWidth < 767) {
-                setItemsPerPage(16);
-            } else {
-                setItemsPerPage(15);
-            }
-        };
+    // useEffect(() => {
+    //     const handleResize = () => {
+    //         if (window.innerWidth < 767) {
+    //             setItemsPerPage(16);
+    //         } else {
+    //             setItemsPerPage(15);
+    //         }
+    //     };
 
-        handleResize();
+    //     handleResize();
 
-        window.addEventListener("resize", handleResize);
+    //     window.addEventListener("resize", handleResize);
 
-        return () => window.removeEventListener("resize", handleResize);
-    }, []);
+    //     return () => window.removeEventListener("resize", handleResize);
+    // }, []);
 
     const linkToProductDetails = (id) => {
         if (!localStorage.getItem('jwt_token_customer')) {
